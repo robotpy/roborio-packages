@@ -1,4 +1,4 @@
-Package: python3-test
+Package: python3-tests
 Version: 3.4.2
 Description: Python programming language test files
 Section: devel
