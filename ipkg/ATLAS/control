@@ -1,0 +1,12 @@
+Package: ATLAS
+Version: 3.8.4
+Description: Automatically Tuned Linear Algebra Software
+Section: devel
+Priority: optional
+Maintainer: Peter Johnson <johnson.peter@gmail.com>
+License: BSD
+Architecture: armv7a-vfp-neon
+OE: ATLAS
+Homepage: http://www.vesperix.com/arm/atlas-arm/
+Depends: libgfortran3 (>= 4.5)
+Source: http://www.vesperix.com/arm/atlas-arm/source/atlas-3.8.4-arm.tar.gz

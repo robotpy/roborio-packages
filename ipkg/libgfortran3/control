@@ -1,0 +1,10 @@
+Package: libgfortran3
+Version: 4.5.3
+Description: Fortran runtime
+Section: devel
+Priority: optional
+Maintainer: Peter Johnson <johnson.peter@gmail.com>
+License: BSD
+Architecture: armv7a-vfp-neon
+OE: libgfortran
+Homepage: http://gcc.gnu.org

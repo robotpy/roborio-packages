@@ -1,0 +1,9 @@
+/ipkg/*.ipk
+/ipkg/*/debian-binary
+/ipkg/*/*.tar.gz
+/ipkg/*/*.tgz
+/ipkg/*/data*
+/ipkg/Packages*
+
+/ipkg/tools/*.pyc
+/ipkg/tools/__pycache__

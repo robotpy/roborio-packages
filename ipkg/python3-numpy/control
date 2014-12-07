@@ -1,0 +1,12 @@
+Package: python34-numpy
+Version: 1.8.1
+Description: array processing for numbers, strings, records, and objects
+Section: devel
+Priority: optional
+Maintainer: Peter Johnson <johnson.peter@gmail.com>
+License: BSD
+Architecture: armv7a-vfp-neon
+OE: numpy
+Homepage: http://www.numpy.org
+Depends: ATLAS (>= 3.8.4), python3 (>= 3.4.0)
+Source: http://downloads.sourceforge.net/project/numpy/NumPy/1.8.1/numpy-1.8.1.tar.gz
