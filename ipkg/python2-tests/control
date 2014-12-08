@@ -3,7 +3,7 @@ Version: 2.7.8
 Description: Python programming language test files
 Section: devel
 Priority: optional
-Maintainer: Peter Johnson <johnson.peter@gmail.com>
+Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: armv7a-vfp-neon
 OE: python2

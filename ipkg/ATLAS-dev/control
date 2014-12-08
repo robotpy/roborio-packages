@@ -3,7 +3,7 @@ Version: 3.8.4
 Description: Automatically Tuned Linear Algebra Software
 Section: devel
 Priority: optional
-Maintainer: Peter Johnson <johnson.peter@gmail.com>
+Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: armv7a-vfp-neon
 OE: ATLAS
