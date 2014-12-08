@@ -14,7 +14,7 @@ clean:
 	rm -f data.tar.gz
 	rm -f ${IPK_NAME}
 
-${IPK_NAME}:
+${IPK_NAME}: control data postinst
 	tar czvf control.tar.gz control postinst
 	cd data && tar czvf ../data.tar.gz . && cd ..
 	echo 2.0 > debian-binary
