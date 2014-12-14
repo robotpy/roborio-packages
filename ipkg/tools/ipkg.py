@@ -176,8 +176,11 @@ class IPackageList(object):
             control = self.packages[(name, version, arch)]
             for field in ["Package", "Version", "Section", "Architecture",
                           "Maintainer", "MD5Sum", "Size", "Filename",
-                          "Description", "OE", "Homepage", "Priority"]:
+                          "Description", "OE", "Homepage", "Depends",
+                          "Priority"]:
                 val = getattr(control, field, "unknown")
+                if field == "Depends" and val == "unknown":
+                    continue
                 fileobj.write("%s: %s\n" % (field, val))
             fileobj.write("\n\n")
 
