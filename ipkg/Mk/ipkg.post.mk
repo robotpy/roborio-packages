@@ -26,7 +26,7 @@ clean:
 
 install-deps:
 ifneq ($(strip ${DEPS}),)
-	ssh admin@${ROBORIO} 'opkg update && opkg install ${DEPS}'
+	ssh ${BUILD_USER}@${ROBORIO} 'opkg update && opkg install ${DEPS}'
 endif
 
 fetch: ${TGZ}
@@ -49,6 +49,16 @@ endif
 
 install:
 	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR} && ${INSTALL_CMD}'
+ifneq ($(strip ${EXES}),)
+	ssh ${BUILD_USER}@${ROBORIO} 'for exe in ${EXES}; do \
+	    mkdir -p /`dirname $$exe`/.debug &&
+	    chmod u+w /$$exe &&
+	    objcopy --only-keep-debug /$$exe /`dirname $$exe`/.debug/`basename $$exe` && \
+	    chmod 755 /`dirname $$exe`/.debug/`basename $$exe` && \
+	    objcopy --strip-debug /$$exe && \
+	    objcopy --add-gnu-debuglink=`basename $$exe` /$$exe; \
+	    done'
+endif
 
 getdata:
 	mkdir -p data
