@@ -1,0 +1,4 @@
+#!/bin/sh
+# delete compiled library files
+find /usr/local/lib/python3.4 -name \*.py[co] -delete
+find /usr/local/lib/python3.4 -name __pycache__ -delete
