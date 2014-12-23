@@ -9,6 +9,6 @@ INSTALL_CMD = /usr/local/bin/python3 setup.py install
 GETDATA_TARARGS = usr/local/lib/python3.4/site-packages/numpy* \
 		  usr/local/bin/f2py3
 
-EXTRA_CONTROL = postinst
+EXTRA_CONTROL = postinst prerm
 
 include ../Mk/ipkg.post.mk
