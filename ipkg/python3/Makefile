@@ -8,7 +8,7 @@ INSTALL_CMD = make install
 
 GETDATA_TARARGS = --exclude=usr/local/lib/python3.4/site-packages/numpy\* \
 		  --exclude=usr/local/lib/python3.4/test \
-		  --exclude=usr/local/lib/python3.4/config-3.4m \
+		  --exclude=usr/local/lib/python3.4/config-3.4m/libpython3.4m.a \
 		  --exclude=usr/local/lib/python3.4/lib-dynload/.debug \
 		  --exclude=\*.py[co] \
 		  --exclude=__pycache__ \
