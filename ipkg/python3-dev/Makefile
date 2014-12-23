@@ -6,7 +6,8 @@ BUILD_CMD = /bin/false
 
 INSTALL_CMD = /bin/false
 
-GETDATA_TARARGS = usr/local/include/python3.4m \
+GETDATA_TARARGS = --exclude=usr/local/include/python3.4m/pyconfig.h \
+		  usr/local/include/python3.4m \
 		  usr/local/lib/pkgconfig/python*3* \
 		  usr/local/lib/python3.4/config-3.4m/libpython3.4m.a
 

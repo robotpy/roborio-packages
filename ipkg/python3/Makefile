@@ -12,6 +12,7 @@ GETDATA_TARARGS = --exclude=usr/local/lib/python3.4/site-packages/numpy\* \
 		  --exclude=usr/local/lib/python3.4/lib-dynload/.debug \
 		  --exclude=\*.py[co] \
 		  --exclude=__pycache__ \
+		  usr/local/include/python3.4m/pyconfig.h \
 		  usr/local/lib/libpython3* \
 		  usr/local/lib/python3.4 \
 		  usr/local/bin/*3.4 \
