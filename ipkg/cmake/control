@@ -1,0 +1,10 @@
+Package: cmake
+Version: 3.1.1
+Description: 
+Section: devel
+Priority: optional
+Maintainer: RobotPy Developers <robotpy@googlegroups.com>
+License: BSD
+Architecture: armv7a-vfp-neon
+Homepage: http://www.cmake.org/
+Source: http://www.cmake.org/files/v3.1/cmake-3.1.1.tar.gz
