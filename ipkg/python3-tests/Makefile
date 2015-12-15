@@ -8,7 +8,7 @@ INSTALL_CMD = /bin/false
 
 GETDATA_TARARGS = --exclude=\*.py[co] \
 		  --exclude=__pycache__ \
-		  usr/local/lib/python3.4/test
+		  usr/local/lib/python3.5/test
 
 EXTRA_CONTROL = postinst prerm
 

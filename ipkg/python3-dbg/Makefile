@@ -6,8 +6,8 @@ BUILD_CMD = /bin/false
 
 INSTALL_CMD = /bin/false
 
-GETDATA_TARARGS = usr/local/bin/.debug/python3.4m \
+GETDATA_TARARGS = usr/local/bin/.debug/python3.5m \
 		  usr/local/lib/.debug/libpython3* \
-		  usr/local/lib/python3.4/lib-dynload/.debug
+		  usr/local/lib/python3.5/lib-dynload/.debug
 
 include ../Mk/ipkg.post.mk

@@ -1,5 +1,5 @@
 Package: python3-dbg
-Version: 3.4.2
+Version: 3.5.1
 Description: Python programming language debug files
 Section: devel
 Priority: optional
@@ -8,5 +8,5 @@ License: BSD
 Architecture: armv7a-vfp-neon
 OE: python3
 Homepage: http://www.python.org
-Depends: python3 (= 3.4.2)
-Source: https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tgz
+Depends: python3 (= 3.5.1)
+Source: https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz

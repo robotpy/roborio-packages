@@ -1,5 +1,5 @@
 Package: python3
-Version: 3.4.2
+Version: 3.5.1
 Description: Python programming language
 Section: devel
 Priority: optional
@@ -10,4 +10,4 @@ OE: python3
 Homepage: http://www.python.org
 Depends: libc6
 Recommends: libreadline6
-Source: https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tgz
+Source: https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
