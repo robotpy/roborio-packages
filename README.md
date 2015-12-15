@@ -14,3 +14,11 @@ containing the following line:
 `src/gz robotpy http://www.tortall.net/~robotpy/feeds/2014`
 
 Then run `opkg update`.
+
+Building these packages yourself
+================================
+
+Go into a directory and do this:
+
+    make ROBORIO=roborio-1418.local all
+
