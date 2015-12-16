@@ -50,14 +50,16 @@ endif
 install:
 	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR} && ${INSTALL_CMD}'
 ifneq ($(strip ${EXES}),)
-	ssh ${BUILD_USER}@${ROBORIO} 'for exe in ${EXES}; do \
-	    mkdir -p /`dirname $$exe`/.debug &&
-	    chmod u+w /$$exe &&
-	    objcopy --only-keep-debug /$$exe /`dirname $$exe`/.debug/`basename $$exe` && \
-	    chmod 755 /`dirname $$exe`/.debug/`basename $$exe` && \
-	    objcopy --strip-debug /$$exe && \
-	    objcopy --add-gnu-debuglink=`basename $$exe` /$$exe; \
-	    done'
+	ssh ${BUILD_USER}@${ROBORIO} 'for exes in ${EXES}; do for exe in /$$exes; do \
+		fdir=$$(dirname $$exe) && fbase=$$(basename "$$exe") && \
+		fdebug="$${fbase%.*}.debug" && \
+		mkdir -p "$$fdir"/.debug && \
+		chmod u+w $$exe && \
+		objcopy --only-keep-debug $$exe "$$fdir/.debug/$$fdebug" && \
+		chmod 755 "$$fdir/.debug/$$fdebug" && \
+		objcopy --strip-debug "$$exe" && \
+		objcopy --add-gnu-debuglink="$$fdir/.debug/$$fdebug" "$$exe"; \
+		done; done'
 endif
 
 getdata:
