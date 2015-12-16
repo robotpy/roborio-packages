@@ -1,13 +1,13 @@
 Package: python2
-Version: 2.7.8
+Version: 2.7.11
 Description: Python programming language
 Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
-Architecture: armv7a-vfp-neon
+Architecture: cortexa9-vfpv3
 OE: python
 Homepage: http://www.python.org
 Depends: libc6
 Recommends: libreadline6
-Source: https://www.python.org/ftp/python/2.7.8/Python-2.7.8.tgz
+Source: https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgz

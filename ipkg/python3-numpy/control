@@ -5,7 +5,7 @@ Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
-Architecture: armv7a-vfp-neon
+Architecture: cortexa9-vfpv3
 OE: numpy
 Homepage: http://www.numpy.org
 Depends: ATLAS (>= 3.8.4), python3 (>= 3.5.0)

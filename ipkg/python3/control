@@ -5,7 +5,7 @@ Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
-Architecture: armv7a-vfp-neon
+Architecture: cortexa9-vfpv3
 OE: python3
 Homepage: http://www.python.org
 Depends: libc6

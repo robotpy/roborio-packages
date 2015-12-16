@@ -5,6 +5,6 @@ Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
-Architecture: armv7a-vfp-neon
+Architecture: cortexa9-vfpv3
 OE: libgfortran
 Homepage: http://gcc.gnu.org
