@@ -1,23 +1,33 @@
-#ifndef ATLAS_MVT_H
-#define ATLAS_MVT_H
+#ifndef ATLAS_ZMVT_L0_H
+#define ATLAS_ZMVT_L0_H
 
-#include "atlas_misc.h"
+#include "atlas_type.h"
 
-#define ATL_mvTMU 2
-#define ATL_mvTNU 8
-#ifndef ATL_L1mvelts
-   #define ATL_L1mvelts ((3*ATL_L1elts)>>2)
+#ifndef ATL_MVKERN_DEF
+   #define ATL_MVKERN_DEF
+   typedef void (*ATL_mvkern_t)
+      (ATL_CINT, ATL_CINT, const double*, ATL_CINT, const double*, double*);
+
 #endif
-#ifndef ATL_mvNNU
-   #include "atlas_zmvN.h"
-#endif
+void ATL_zmvtk__1(ATL_CINT, ATL_CINT, const double*, ATL_CINT, const double*, double*);
+void ATL_zmvtk__1_b0(ATL_CINT, ATL_CINT, const double*, ATL_CINT, const double*, double*);
 
-#define ATL_GetPartMVT(A_, lda_, mb_, nb_) \
-{ \
-   *(mb_) = (ATL_L1mvelts - (ATL_mvTMU<<1)) / ((ATL_mvTMU<<1)+1); \
-   if (*(mb_) > ATL_mvTNU) *(mb_) = (*(mb_)/ATL_mvTNU)*ATL_mvTNU; \
-   else (*mb_) = ATL_mvTNU; \
-   *(nb_) = ATL_mvTMU; \
+static ATL_mvkern_t ATL_GetMVTKern
+   (ATL_CINT M, ATL_CINT N, const void *A, ATL_CINT lda,
+    ATL_mvkern_t *mvk_b0, 
+    int *mu, int *nu, int *minM, int *minN, int *alignX, int *ALIGNX2A,
+    int *alignY, int *FNU, ATL_INT *CacheElts) 
+{
+   *minM = 0;   *minN = 0;
+   *mu = 16;     *nu = 1;
+   *alignX = 8;  *alignY = 8;
+   *ALIGNX2A = 0;
+   *FNU = 0;
+   *CacheElts = 1884;
+   *mvk_b0 = ATL_zmvtk__1_b0;
+   return(ATL_zmvtk__1);
 }
 
-#endif
+#define ATL_GetPartMVT(A_, lda_, mb_, nb_) { *(mb_) = 464; *(nb_) = 1; }
+
+#endif  /* end protection around header file contents */

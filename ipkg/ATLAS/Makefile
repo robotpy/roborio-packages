@@ -1,5 +1,5 @@
 VER=$(shell grep Version control | cut -c 10-)
-IPK_NAME=../ATLAS_${VER}_armv7a-vfp-neon.ipk
+IPK_NAME=../ATLAS_${VER}_cortexa9-vfpv3.ipk
 
 .PHONY: all clean getdata ipk
 
@@ -17,7 +17,7 @@ clean:
 
 getdata:
 	mkdir -p data/usr/local/lib
-	cp -p ../../atlas_libs/*.so data/usr/local/lib/
+	cp -p ../../atlas_libs/lib/*.so data/usr/local/lib/
 
 ${IPK_NAME}: data control postinst
 	tar czvf control.tar.gz control postinst

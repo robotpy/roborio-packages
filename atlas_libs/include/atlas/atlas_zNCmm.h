@@ -4,7 +4,7 @@
    #define ATL_mmMULADD
    #define ATL_mmLAT 4
    #define ATL_mmMU  4
-   #define ATL_mmNU  4
+   #define ATL_mmNU  5
    #define ATL_mmKU  1
    #define MB 24
    #define NB 24

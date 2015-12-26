@@ -5,23 +5,23 @@
    #define ATL_mmLAT 4
    #define ATL_mmMU  4
    #define ATL_mmNU  4
-   #define ATL_mmKU  1
-   #define MB 56
-   #define NB 56
-   #define KB 56
-   #define NBNB 3136
-   #define MBNB 3136
-   #define MBKB 3136
-   #define NBKB 3136
-   #define NB2 112
-   #define NBNB2 6272
+   #define ATL_mmKU  2
+   #define MB 80
+   #define NB 80
+   #define KB 80
+   #define NBNB 6400
+   #define MBNB 6400
+   #define MBKB 6400
+   #define NBKB 6400
+   #define NB2 160
+   #define NBNB2 12800
 
-   #define ATL_MulByNB(N_) ((N_) * 56)
-   #define ATL_DivByNB(N_) ((N_) / 56)
-   #define ATL_MulByNBNB(N_) ((N_) * 3136)
-   #define NBmm ATL_dJIK56x56x56TN56x56x0_a1_b1
-   #define NBmm_b1 ATL_dJIK56x56x56TN56x56x0_a1_b1
-   #define NBmm_b0 ATL_dJIK56x56x56TN56x56x0_a1_b0
-   #define NBmm_bX ATL_dJIK56x56x56TN56x56x0_a1_bX
+   #define ATL_MulByNB(N_) ((N_) * 80)
+   #define ATL_DivByNB(N_) ((N_) / 80)
+   #define ATL_MulByNBNB(N_) ((N_) * 6400)
+   #define NBmm ATL_dJIK80x80x80TN80x80x0_a1_b1
+   #define NBmm_b1 ATL_dJIK80x80x80TN80x80x0_a1_b1
+   #define NBmm_b0 ATL_dJIK80x80x80TN80x80x0_a1_b0
+   #define NBmm_bX ATL_dJIK80x80x80TN80x80x0_a1_bX
 
 #endif

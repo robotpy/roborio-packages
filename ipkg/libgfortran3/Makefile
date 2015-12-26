@@ -1,5 +1,5 @@
 VER=$(shell grep Version control | cut -c 10-)
-IPK_NAME=../libgfortran3_${VER}_armv7a-vfp-neon.ipk
+IPK_NAME=../libgfortran3_${VER}_cortexa9-vfpv3.ipk
 
 .PHONY: all clean ipk
 

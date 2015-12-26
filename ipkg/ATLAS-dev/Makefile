@@ -1,5 +1,5 @@
 VER=$(shell grep Version control | cut -c 10-)
-IPK_NAME=../ATLAS-dev_${VER}_armv7a-vfp-neon.ipk
+IPK_NAME=../ATLAS-dev_${VER}_cortexa9-vfpv3.ipk
 
 .PHONY: all clean getdata ipk
 
@@ -18,7 +18,7 @@ clean:
 getdata:
 	mkdir -p data/usr/local/lib
 	mkdir -p data/usr/local/include
-	cp -p ../../atlas_libs/*.a data/usr/local/lib/
+	cp -p ../../atlas_libs/lib/*.a data/usr/local/lib/
 	cp -Rp ../../atlas_libs/include/* data/usr/local/include/
 
 ${IPK_NAME}: data control

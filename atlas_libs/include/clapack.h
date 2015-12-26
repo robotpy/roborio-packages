@@ -1,38 +1,14 @@
-/*
- *             Automatically Tuned Linear Algebra Software v3.8.4
- *                    (C) Copyright 1999 R. Clint Whaley
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *   1. Redistributions of source code must retain the above copyright
- *      notice, this list of conditions and the following disclaimer.
- *   2. Redistributions in binary form must reproduce the above copyright
- *      notice, this list of conditions, and the following disclaimer in the
- *      documentation and/or other materials provided with the distribution.
- *   3. The name of the ATLAS group or the names of its contributers may
- *      not be used to endorse or promote products derived from this
- *      software without specific written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
- * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE ATLAS GROUP OR ITS CONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- */
-
 #ifndef CLAPACK_H
 
 #define CLAPACK_H
 #include "cblas.h"
 
+#ifndef ATL_INT
+   #define ATL_INT int
+#endif
+#ifndef ATL_CINT
+   #define ATL_CINT const ATL_INT
+#endif
 #ifndef ATLAS_ORDER
    #define ATLAS_ORDER CBLAS_ORDER
 #endif
@@ -66,7 +42,20 @@ int clapack_spotri(const enum ATLAS_ORDER Order, const enum ATLAS_UPLO Uplo,
 int clapack_slauum(const enum ATLAS_ORDER Order, const enum ATLAS_UPLO Uplo,
                    const int N, float *A, const int lda);
 int clapack_strtri(const enum ATLAS_ORDER Order,const enum ATLAS_UPLO Uplo,
-                  const enum ATLAS_DIAG Diag,const int N, float *A, const int lda);
+                   const enum ATLAS_DIAG Diag, const int N, float *A,
+                   const int lda);
+int clapack_sgels(const enum CBLAS_ORDER Order,
+                  const enum CBLAS_TRANSPOSE TA,
+                  ATL_CINT M, ATL_CINT N, ATL_CINT NRHS, float *A,
+                  ATL_CINT lda, float *B, const int ldb);
+int clapack_sgelqf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   float *A, ATL_CINT lda, float *TAU);
+int clapack_sgeqlf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   float *A, ATL_CINT lda, float *TAU);
+int clapack_sgerqf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   float *A, ATL_CINT lda, float *TAU);
+int clapack_sgeqrf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   float *A, ATL_CINT lda, float *TAU);
 
 int clapack_dgesv(const enum CBLAS_ORDER Order, const int N, const int NRHS,
                   double *A, const int lda, int *ipiv,
@@ -92,7 +81,20 @@ int clapack_dpotri(const enum ATLAS_ORDER Order, const enum ATLAS_UPLO Uplo,
 int clapack_dlauum(const enum ATLAS_ORDER Order, const enum ATLAS_UPLO Uplo,
                    const int N, double *A, const int lda);
 int clapack_dtrtri(const enum ATLAS_ORDER Order,const enum ATLAS_UPLO Uplo,
-                  const enum ATLAS_DIAG Diag,const int N, double *A, const int lda);
+                   const enum ATLAS_DIAG Diag, const int N, double *A,
+                   const int lda);
+int clapack_dgels(const enum CBLAS_ORDER Order,
+                  const enum CBLAS_TRANSPOSE TA,
+                  ATL_CINT M, ATL_CINT N, ATL_CINT NRHS, double *A,
+                  ATL_CINT lda, double *B, const int ldb);
+int clapack_dgelqf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   double *A, ATL_CINT lda, double *TAU);
+int clapack_dgeqlf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   double *A, ATL_CINT lda, double *TAU);
+int clapack_dgerqf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   double *A, ATL_CINT lda, double *TAU);
+int clapack_dgeqrf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   double *A, ATL_CINT lda, double *TAU);
 
 int clapack_cgesv(const enum CBLAS_ORDER Order, const int N, const int NRHS,
                   void *A, const int lda, int *ipiv,
@@ -118,7 +120,20 @@ int clapack_cpotri(const enum ATLAS_ORDER Order, const enum ATLAS_UPLO Uplo,
 int clapack_clauum(const enum ATLAS_ORDER Order, const enum ATLAS_UPLO Uplo,
                    const int N, void *A, const int lda);
 int clapack_ctrtri(const enum ATLAS_ORDER Order,const enum ATLAS_UPLO Uplo,
-                  const enum ATLAS_DIAG Diag,const int N, void *A, const int lda);
+                   const enum ATLAS_DIAG Diag, const int N, void *A,
+                   const int lda);
+int clapack_cgels(const enum CBLAS_ORDER Order,
+                  const enum CBLAS_TRANSPOSE TA,
+                  ATL_CINT M, ATL_CINT N, ATL_CINT NRHS, void *A,
+                  ATL_CINT lda, void *B, const int ldb);
+int clapack_cgelqf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   void *A, ATL_CINT lda, void *TAU);
+int clapack_cgeqlf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   void *A, ATL_CINT lda, void *TAU);
+int clapack_cgerqf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   void *A, ATL_CINT lda, void *TAU);
+int clapack_cgeqrf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   void *A, ATL_CINT lda, void *TAU);
 
 int clapack_zgesv(const enum CBLAS_ORDER Order, const int N, const int NRHS,
                   void *A, const int lda, int *ipiv,
@@ -144,6 +159,19 @@ int clapack_zpotri(const enum ATLAS_ORDER Order, const enum ATLAS_UPLO Uplo,
 int clapack_zlauum(const enum ATLAS_ORDER Order, const enum ATLAS_UPLO Uplo,
                    const int N, void *A, const int lda);
 int clapack_ztrtri(const enum ATLAS_ORDER Order,const enum ATLAS_UPLO Uplo,
-                  const enum ATLAS_DIAG Diag,const int N, void *A, const int lda);
+                   const enum ATLAS_DIAG Diag, const int N, void *A,
+                   const int lda);
+int clapack_zgels(const enum CBLAS_ORDER Order,
+                  const enum CBLAS_TRANSPOSE TA,
+                  ATL_CINT M, ATL_CINT N, ATL_CINT NRHS, void *A,
+                  ATL_CINT lda, void *B, const int ldb);
+int clapack_zgelqf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   void *A, ATL_CINT lda, void *TAU);
+int clapack_zgeqlf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   void *A, ATL_CINT lda, void *TAU);
+int clapack_zgerqf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   void *A, ATL_CINT lda, void *TAU);
+int clapack_zgeqrf(const enum CBLAS_ORDER Order, ATL_CINT M, ATL_CINT N,
+                   void *A, ATL_CINT lda, void *TAU);
 
 #endif

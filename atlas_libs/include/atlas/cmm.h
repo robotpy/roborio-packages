@@ -2,10 +2,10 @@
    #define CMM_H
 
    #define ATL_mmMULADD
-   #define ATL_mmLAT 3
+   #define ATL_mmLAT 7
    #define ATL_mmMU  4
-   #define ATL_mmNU  3
-   #define ATL_mmKU  1
+   #define ATL_mmNU  4
+   #define ATL_mmKU  2
    #define MB 80
    #define NB 80
    #define KB 80

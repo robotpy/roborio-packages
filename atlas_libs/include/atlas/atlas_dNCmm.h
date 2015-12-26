@@ -4,20 +4,20 @@
    #define ATL_mmMULADD
    #define ATL_mmLAT 4
    #define ATL_mmMU  4
-   #define ATL_mmNU  4
+   #define ATL_mmNU  5
    #define ATL_mmKU  1
-   #define MB 28
-   #define NB 28
-   #define KB 28
-   #define NBNB 784
-   #define MBNB 784
-   #define MBKB 784
-   #define NBKB 784
-   #define NB2 56
-   #define NBNB2 1568
+   #define MB 80
+   #define NB 80
+   #define KB 80
+   #define NBNB 6400
+   #define MBNB 6400
+   #define MBKB 6400
+   #define NBKB 6400
+   #define NB2 160
+   #define NBNB2 12800
 
-   #define ATL_MulByNB(N_) ((N_) * 28)
-   #define ATL_DivByNB(N_) ((N_) / 28)
-   #define ATL_MulByNBNB(N_) ((N_) * 784)
+   #define ATL_MulByNB(N_) ((N_) * 80)
+   #define ATL_DivByNB(N_) ((N_) / 80)
+   #define ATL_MulByNBNB(N_) ((N_) * 6400)
 
 #endif

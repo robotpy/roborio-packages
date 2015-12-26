@@ -15,6 +15,7 @@
 #define CBLAS_INDEX int
 
 int cblas_errprn(int ierr, int info, char *form, ...);
+void cblas_xerbla(int p, const char *rout, const char *form, ...);
 
 /*
  * ===========================================================================
