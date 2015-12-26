@@ -5,9 +5,14 @@ SOURCE ?= $(shell grep Source: control | cut -c 9-)
 
 IPK_NAME = ../${PACKAGE}_${VERSION}_${ARCH}.ipk
 
-.PHONY: all clean install-deps fetch extract build install fetch-src getdata ipk
+.PHONY: all clean install-deps fetch extract build install fetch-src getdata ipk package
 
 ipk: ${IPK_NAME}
+
+package:
+	$(MAKE) clean
+	$(MAKE) getdata
+	$(MAKE) ipk
 
 all:
 	$(MAKE) clean

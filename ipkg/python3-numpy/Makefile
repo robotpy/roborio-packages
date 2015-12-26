@@ -1,6 +1,6 @@
 include ../Mk/ipkg.pre.mk
 
-DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev make python3 ATLAS-dev
+DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev make python3-dev ATLAS-dev
 
 BUILD_WARNING = CAUTION: this almost certainly needs a swap device to complete
 BUILD_CMD = /usr/local/bin/python3 setup.py build

@@ -8,5 +8,5 @@ License: BSD
 Architecture: cortexa9-vfpv3
 OE: numpy
 Homepage: http://www.numpy.org
-Depends: ATLAS (>= 3.8.4), python (>= 2.7.0)
-Source: http://downloads.sourceforge.net/project/numpy/NumPy/1.9.1/numpy-1.10.2.tar.gz
+Depends: ATLAS (>= 3.10.2), python (>= 2.7.0)
+Source: http://downloads.sourceforge.net/project/numpy/NumPy/1.10.2/numpy-1.10.2.tar.gz

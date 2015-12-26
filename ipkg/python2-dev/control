@@ -1,0 +1,12 @@
+Package: python2-dev
+Version: 2.7.11
+Description: Python programming language development files
+Section: devel
+Priority: optional
+Maintainer: RobotPy Developers <robotpy@googlegroups.com>
+License: BSD
+Architecture: cortexa9-vfpv3
+OE: python3
+Homepage: http://www.python.org
+Depends: python2 (= 2.7.11)
+Source: https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgz
