@@ -1,4 +1,4 @@
-include ../Mk/ipkg.pre.mk
+include ../Mk/pkgdata.mk
 
 DEPS =
 
@@ -12,4 +12,5 @@ GETDATA_TARARGS = --exclude=\*.py[co] \
 
 EXTRA_CONTROL = postinst prerm
 
-include ../Mk/ipkg.post.mk
+include ../Mk/remote_build.mk
+include ../Mk/ipk.mk

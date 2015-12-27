@@ -1,4 +1,4 @@
-include ../Mk/ipkg.pre.mk
+include ../Mk/pkgdata.mk
 
 DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev make libreadline-dev openssl-dev libz-dev libsqlite3-dev libexpat-dev libxml2-dev libbz2-dev liblzma-dev libgdbm-dev
 
@@ -32,4 +32,5 @@ EXES = usr/local/bin/python3.5m \
        usr/local/lib/libpython3.5m.so.1.0 \
        usr/local/lib/python3.5/lib-dynload/*.so
 
-include ../Mk/ipkg.post.mk
+include ../Mk/remote_build.mk
+include ../Mk/ipk.mk

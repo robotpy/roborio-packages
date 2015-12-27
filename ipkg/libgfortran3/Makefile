@@ -1,21 +1,10 @@
-VER=$(shell grep Version control | cut -c 10-)
-IPK_NAME=../libgfortran3_${VER}_cortexa9-vfpv3.ipk
+include ../Mk/pkgdata.mk
 
-.PHONY: all clean ipk
-
-ipk: ${IPK_NAME}
+.PHONY: all clean getdata
 
 all:
-	$(MAKE) clean
-	$(MAKE) ipk
+	$(MAKE) package
 
-clean:
-	rm -f control.tar.gz
-	rm -f data.tar.gz
-	rm -f ${IPK_NAME}
+getdata: ;
 
-${IPK_NAME}: control data postinst
-	tar czvf control.tar.gz control postinst
-	cd data && tar czvf ../data.tar.gz . && cd ..
-	echo 2.0 > debian-binary
-	ar r ${IPK_NAME} control.tar.gz data.tar.gz debian-binary
+include ../Mk/ipk.mk

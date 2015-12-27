@@ -1,4 +1,4 @@
-include ../Mk/ipkg.pre.mk
+include ../Mk/pkgdata.mk
 
 DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev make python2-dev ATLAS-dev
 
@@ -11,4 +11,5 @@ GETDATA_TARARGS = usr/local/lib/python2.7/site-packages/numpy* \
 
 EXTRA_CONTROL = postinst prerm
 
-include ../Mk/ipkg.post.mk
+include ../Mk/remote_build.mk
+include ../Mk/ipk.mk

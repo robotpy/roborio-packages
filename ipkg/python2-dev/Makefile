@@ -1,4 +1,4 @@
-include ../Mk/ipkg.pre.mk
+include ../Mk/pkgdata.mk
 
 DEPS =
 
@@ -12,4 +12,5 @@ GETDATA_TARARGS = --exclude=usr/local/include/python2.7/pyconfig.h \
 		  usr/local/lib/pkgconfig/python-2.7.pc \
 		  usr/local/lib/python2.7/config/libpython2.7.a
 
-include ../Mk/ipkg.post.mk
+include ../Mk/remote_build.mk
+include ../Mk/ipk.mk

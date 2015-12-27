@@ -1,4 +1,4 @@
-include ../Mk/ipkg.pre.mk
+include ../Mk/pkgdata.mk
 
 DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev make libreadline-dev openssl-dev libz-dev libsqlite3-dev libexpat-dev libxml2-dev libbz2-dev liblzma-dev libgdbm-dev
 
@@ -22,4 +22,5 @@ GETDATA_TARARGS = --exclude=usr/local/lib/python2.7/site-packages/numpy\* \
 
 EXTRA_CONTROL = postinst
 
-include ../Mk/ipkg.post.mk
+include ../Mk/remote_build.mk
+include ../Mk/ipk.mk

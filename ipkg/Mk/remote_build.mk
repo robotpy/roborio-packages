@@ -19,10 +19,17 @@ TGZ ?= $(lastword $(subst /, ,${SOURCE}))
 BUILD_DIR ?= $(subst .tgz,,$(subst .tar.gz,,${TGZ}))
 BUILD_USER ?= admin
 
-clean:
-	rm -f control.tar.gz
-	rm -f data.tar.gz
-	rm -f ${IPK_NAME} ${EXTRA_CLEAN}
+.PHONY: all install-deps fetch extract build install fetch-src getdata
+
+all:
+	$(MAKE) clean
+	$(MAKE) install-deps
+	$(MAKE) fetch
+	$(MAKE) extract
+	$(MAKE) build
+	$(MAKE) install
+	$(MAKE) getdata
+	$(MAKE) ipk
 
 install-deps:
 ifneq ($(strip ${DEPS}),)
@@ -68,9 +75,3 @@ getdata:
 	mkdir data.new
 	cd data.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_TARARGS}' | tar xf -
 	rm -rf data.old && mv data data.old && mv data.new data
-
-${IPK_NAME}: data control ${EXTRA_CONTROL}
-	tar -czvf control.tar.gz --owner=0 --group=0 control ${EXTRA_CONTROL}
-	cd data && tar -czvf ../data.tar.gz --owner=0 --group=0 . && cd ..
-	echo 2.0 > debian-binary
-	ar r ${IPK_NAME} control.tar.gz data.tar.gz debian-binary
