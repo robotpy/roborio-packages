@@ -70,7 +70,7 @@ getdata:
 	rm -rf data.old && mv data data.old && mv data.new data
 
 ${IPK_NAME}: data control ${EXTRA_CONTROL}
-	tar czvf control.tar.gz control ${EXTRA_CONTROL}
-	cd data && tar czvf ../data.tar.gz . && cd ..
+	tar -czvf control.tar.gz --owner=0 --group=0 control ${EXTRA_CONTROL}
+	cd data && tar -czvf ../data.tar.gz --owner=0 --group=0 . && cd ..
 	echo 2.0 > debian-binary
 	ar r ${IPK_NAME} control.tar.gz data.tar.gz debian-binary
