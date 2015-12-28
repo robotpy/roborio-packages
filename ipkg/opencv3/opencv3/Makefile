@@ -2,6 +2,8 @@ IPK_DEST = ../..
 include ../../Mk/pkgdata.mk
 
 .PHONY: all getdata
+	
+EXTRA_CONTROL = postinst
 
 all:
 	$(MAKE) clean
