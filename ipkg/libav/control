@@ -1,0 +1,11 @@
+Package: libav
+Version: 11.4
+Description: Open source audio and video processing tools
+Section: devel
+Priority: optional
+Maintainer: RobotPy Developers <robotpy@googlegroups.com>
+License: LGPL
+Architecture: cortexa9-vfpv3
+Homepage: https://www.libav.org
+Depends: libc6 libstdc++6
+Source: https://libav.org/releases/libav-11.4.tar.gz
