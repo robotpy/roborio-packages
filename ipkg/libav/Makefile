@@ -2,7 +2,7 @@ include ../Mk/pkgdata.mk
 
 DEPS = binutils-symlinks coreutils gcc-symlinks g++-symlinks libgcc-s-dev make
 
-BUILD_CMD = CXX=/usr/bin/g++ ./configure --disable-shared --disable-zlib && make
+BUILD_CMD = CXX=/usr/bin/g++ ./configure --enable-pic --disable-shared --disable-zlib && make
 
 INSTALL_CMD = make install
 
