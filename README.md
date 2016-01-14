@@ -4,16 +4,54 @@ RobotPy RoboRIO Packages
 This repository contains the build files used to build the RobotPy .ipk
 packages hosted at http://www.tortall.net/~robotpy/feeds/2016/.
 
+Package Installation
+====================
 
-Setting up the opkg feed on the RoboRIO
-=======================================
+Currently, we have the following binary packages available:
+
+* ATLAS
+* ATLAS-dev
+* libgfortran
+* mjpg-streamer
+* opencv3
+* opencv3-dev
+* opencv3-java
+* python2
+* python2-dev
+* python27-numpy
+* python27-opencv3
+* python3
+* python3-dev
+* python35-numpy
+* python35-opencv3
+
+We support online (RoboRIO connected to the internet) and offline installation
+of the packages.
+
+Installing a package (online)
+-----------------------------
 
 Create a `.conf` file in `/etc/opkg` (e.g. `/etc/opkg/robotpy.conf`)
 containing the following line:
 
-`src/gz robotpy http://www.tortall.net/~robotpy/feeds/2016`
+    src/gz robotpy http://www.tortall.net/~robotpy/feeds/2016
 
-Then run `opkg update`.
+Then run `opkg update`. After you setup the opkg feed, you can run:
+
+    opkg install PACKAGENAME
+
+Installing a package (offline)
+------------------------------
+
+You can use the [RobotPy Installer Script](https://github.com/robotpy/robotpy-wpilib/blob/master/installer/installer.py)
+to do offline opkg installs. First, download the package:
+
+    python3 installer.py download-opkg PACKAGENAME
+    
+Then, connect to the network with the RoboRIO, and install it:
+
+    python3 installer.py install-opkg PACKAGENAME
+
 
 Building these packages yourself
 ================================
@@ -26,8 +64,8 @@ Go into a directory and do this:
 
     make ROBORIO=roborio-XXXX-frc.local all
 
-Notes
------
+Build Notes
+-----------
 
 * You will almost certainly want to setup passwordless login using an SSH key,
   as the compile process uses SSH to login to the roborio multiple times.
