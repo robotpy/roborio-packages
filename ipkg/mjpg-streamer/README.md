@@ -9,6 +9,13 @@ Access the camera
 
 With the default settings, you can go to http://roborio-XXXX-frc.local:5800
 
+Debugging problems
+------------------
+
+As of 2016.1.1, there exists a script called `mjpg_streamer_cfg1`, 2, 3.. that
+will execute mjpg_streamer with the same arugments that would get executed by
+the init script. You can run this to see the stderr/stdout of mjpg-streamer.
+
 Known issues
 ------------
 
