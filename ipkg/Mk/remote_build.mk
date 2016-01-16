@@ -19,10 +19,11 @@ TGZ ?= $(lastword $(subst /, ,${SOURCE}))
 BUILD_DIR ?= $(subst .tgz,,$(subst .tar.gz,,${TGZ}))
 BUILD_USER ?= admin
 
-.PHONY: all install-deps fetch extract build install fetch-src getdata
+.PHONY: all init-ssh sync-date install-deps fetch extract build install fetch-src getdata
 
 all:
 	$(MAKE) clean
+	$(MAKE) sync-date
 	$(MAKE) install-deps
 	$(MAKE) fetch
 	$(MAKE) extract
@@ -30,6 +31,13 @@ all:
 	$(MAKE) install
 	$(MAKE) getdata
 	$(MAKE) ipk
+
+
+init-ssh:
+	ssh ${BUILD_USER}@${ROBORIO} 'mkdir -p .ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+
+sync-date:
+	ssh ${BUILD_USER}@${ROBORIO} "date -s '`date -u +'%Y-%m-%d %H:%m:%S'`'"
 
 install-deps:
 ifneq ($(strip ${DEPS}),)
