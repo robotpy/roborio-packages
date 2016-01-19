@@ -1,8 +1,8 @@
 include ../Mk/pkgdata.mk
 
-DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev libstdc++-dev make python3-dev python35-numpy ATLAS-dev gfortran gfortran-symlinks libgfortran-dev
+DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev libstdc++-dev make python3-dev python35-numpy ATLAS-dev libgfortran3 gfortran gfortran-symlinks libgfortran-dev
 
-BUILD_WARNING = CAUTION: this almost certainly needs a swap device to complete
+BUILD_WARNING = CAUTION: this almost certainly needs roborio-vm to complete
 BUILD_CMD = /usr/local/bin/python3 setup.py build
 INSTALL_CMD = /usr/local/bin/python3 setup.py install
 
