@@ -1,7 +1,7 @@
 .PHONY: clean upload
 
 clean:
-	rm Packages Packages.filelist Packages.gz
+	rm -f Packages Packages.filelist Packages.gz
 
 Packages: *.ipk
 	tools/make_package_index.py

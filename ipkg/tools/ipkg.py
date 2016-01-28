@@ -50,14 +50,14 @@ class IPackageControl(object):
 
             if not l:
                 continue
-            field, val = l.split(": ")
+            field, val = l.split(": ", 2)
             if field == "Description":
                 desc = [val]
             else:
                 self._control[field] = val
-
-        self._control = dict(l.split(": ") for l in string.split("\n")
-                             if l.strip())
+        
+        #self._control = dict(l.split(": ", 2) for l in string.split("\n")
+        #                     if l.strip())
 
     def __getattribute__(self, name):
         # All control attributes start with a capital letter
@@ -107,7 +107,10 @@ class IPackage(object):
         tf = tarfile.TarFile.open(
                 fileobj=self.ar.archived_files[b"control.tar.gz"],
                 mode="r:gz")
-        cf = tf.extractfile("control")
+        try:
+            cf = tf.extractfile("control")
+        except KeyError:
+            cf = tf.extractfile("./control")
         self._control = IPackageControl(fileobj=cf)
         return self._control
 
