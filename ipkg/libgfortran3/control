@@ -1,10 +1,11 @@
 Package: libgfortran3
-Version: 4.8.2
+Version: 4.8.2-r0
 Description: Fortran runtime
 Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
-License: BSD
+License: GPL-3.0-with-GCC-exception & GPLv3
 Architecture: cortexa9-vfpv3
 OE: libgfortran
 Homepage: http://gcc.gnu.org
+Provides: libgfortran
