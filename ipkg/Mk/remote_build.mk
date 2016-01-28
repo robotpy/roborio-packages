@@ -19,10 +19,11 @@ TGZ ?= $(lastword $(subst /, ,${SOURCE}))
 BUILD_DIR ?= $(subst .tgz,,$(subst .tar.gz,,${TGZ}))
 BUILD_USER ?= admin
 
-.PHONY: all init-ssh sync-date install-deps fetch extract build install fetch-src getdata
+.PHONY: all init-ssh init-robotpy-opkg sync-date install-deps fetch extract build install fetch-src getdata
 
 all:
 	$(MAKE) clean
+	$(MAKE) init-robotpy-opkg
 	$(MAKE) sync-date
 	$(MAKE) install-deps
 	$(MAKE) fetch
@@ -35,6 +36,9 @@ all:
 
 init-ssh:
 	ssh ${BUILD_USER}@${ROBORIO} 'mkdir -p .ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+
+init-robotpy-opkg:
+	ssh ${BUILD_USER}@${ROBORIO} 'echo "src/gz robotpy http://www.tortall.net/~robotpy/feeds/2016" > /etc/opkg/robotpy.conf'
 
 sync-date:
 	ssh ${BUILD_USER}@${ROBORIO} "date -s '`date -u +'%Y-%m-%d %H:%m:%S'`'"
