@@ -9,6 +9,8 @@ Access the camera
 
 With the default settings, you can go to http://roborio-XXXX-frc.local:5800
 
+For SmartDashboard users, there is a [plugin](https://github.com/Beachbot330/MJPGStream_SDExtension) exists that displays the stream.
+
 Debugging problems
 ------------------
 
