@@ -1,5 +1,5 @@
 Package: python35-scipy
-Version: 0.17.0rc1
+Version: 0.17.0
 Description: array processing for numbers, strings, records, and objects
 Section: devel
 Priority: optional
@@ -9,4 +9,4 @@ Architecture: cortexa9-vfpv3
 OE: scipy
 Homepage: http://www.scipy.org
 Depends: ATLAS (>= 3.10.2), python3 (>= 3.5.0), python35-numpy (>= 1.10)
-Source: https://github.com/scipy/scipy/releases/download/v0.17.0rc1/scipy-0.17.0rc1.tar.gz
+Source: https://github.com/scipy/scipy/releases/download/v0.17.0/scipy-0.17.0.tar.gz
