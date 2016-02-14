@@ -11,6 +11,25 @@ With the default settings, you can go to http://roborio-XXXX-frc.local:5800
 
 For SmartDashboard users, there is a [plugin](https://github.com/Beachbot330/MJPGStream_SDExtension) exists that displays the stream.
 
+Pesistent control settings
+--------------------------
+
+Any settings that you change in the web interface will not be persisted, and will
+disappear after the camera is unplugged or a reboot.
+
+To view the available input settings, you can execute the following:
+
+	mjpg_streamer -i '/usr/local/lib/mjpg-streamer/input_uvc.so --help'
+	
+The available settings can be added to /etc/default/mjpg-streamer, by adding
+them to the `INPUT[]` setting. For example, to set exposure manually to '30',
+you would add the following to the config file:
+
+	INPUT[1]="input_uvc.so --device /dev/video0 -ex 30"
+	
+Some settings do not work on all cameras, or may not support all ranges. The 
+best way to find out what settings will work is to try them in the web interface.
+
 Debugging problems
 ------------------
 

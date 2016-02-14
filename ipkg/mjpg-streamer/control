@@ -1,5 +1,5 @@
 Package: mjpg-streamer
-Version: 2016.1.2
+Version: 2016.2.0
 Description: Sends video via MJPG stream
 Section: devel
 Priority: optional
@@ -8,4 +8,4 @@ License: GPL
 Architecture: cortexa9-vfpv3
 Homepage: http://www.python.org
 Depends: libc6, libjpeg8
-Source: https://github.com/robotpy/mjpg-streamer/archive/2016.1.2.tar.gz
+Source: https://github.com/robotpy/mjpg-streamer/archive/2016.2.0.tar.gz
