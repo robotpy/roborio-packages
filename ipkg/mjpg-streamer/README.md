@@ -1,6 +1,8 @@
 mjpg-streamer for FRC
 =====================
 
+By default, this package will install mjpg-streamer so that it starts on bootup and streams a single camera on port 5800.
+
 This package supports multiple cameras. To change the settings, you should
 modify /etc/default/mjpg-streamer
 
