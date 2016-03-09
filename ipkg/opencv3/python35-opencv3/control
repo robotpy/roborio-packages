@@ -1,5 +1,5 @@
 Package: python35-opencv3
-Version: 3.1.0
+Version: 3.1.0-r1
 Description: Open Source Computer Vision Library (Python 3.5 bindings)
 Section: devel
 Priority: optional
@@ -7,5 +7,5 @@ Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: cortexa9-vfpv3
 Homepage: http://opencv.org/
-Depends: opencv3 (= 3.1.0), python35-numpy (>= 1.10.2)
+Depends: opencv3 (= 3.1.0-r1), python35-numpy (>= 1.10.2)
 Source: https://github.com/Itseez/opencv/archive/3.1.0.tar.gz
