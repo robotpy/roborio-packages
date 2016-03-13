@@ -1,0 +1,54 @@
+
+#######################################
+# First camera
+#######################################
+
+PIDFILE[1]=/var/run/mjpg-streamer1.pid
+
+INPUT[1]="input_uvc.so --device /dev/video0"
+# Frames per second
+FPS[1]=10
+RESOLUTION[1]="160x120"
+
+OUTPUT[1]="output_http.so -w /usr/local/share/mjpg-streamer/www"
+PORT[1]=5800
+
+#######################################
+# Example filter plugin usage
+#######################################
+#
+# To modify/process the input images received by mjpg-streamer and modify them
+# before sending them via the web server, you can use the opencv input plugin
+# and a filter script.
+#
+# If you install mjpg-streamer-py, you can run a python3 script to modify the
+# image. See this for more information:
+#
+# https://github.com/mjpg-streamer/mjpg-streamer/tree/master/mjpg-streamer-experimental/plugins/input_opencv/filters/cvfilter_py
+#
+#INPUT[1]="input_opencv.so --filter /usr/local/lib/mjpg-streamer/cvfilter_py.so --fargs /path/to/python/script.py"
+#FPS[1]=10
+#RESOLUTION[1]="320x240"
+#
+# You can also write a C++ input plugin, and specify it as the argument to
+# --filter instead. See this for more information:
+#
+# https://github.com/mjpg-streamer/mjpg-streamer/tree/master/mjpg-streamer-experimental/plugins/input_opencv/filters/cvfilter_cpp
+#
+
+#######################################
+# Second camera
+#######################################
+
+# If you wish to do two cameras, uncomment this
+#PIDFILE[2]=/var/run/mjpg-streamer2.pid
+
+INPUT[2]="input_uvc.so --device /dev/video1"
+# Frames per second
+FPS[2]=10
+RESOLUTION[2]="160x120"
+
+OUTPUT[2]="output_http.so -w /usr/local/share/mjpg-streamer/www"
+PORT[2]=5801
+
+# And so on... up to 4 cameras (seriously?)

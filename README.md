@@ -13,6 +13,8 @@ Currently, we have the following binary packages available:
 * ATLAS-dev
 * libgfortran
 * mjpg-streamer ([notes](ipkg/mjpg-streamer/README.md))
+* mjpg-streamer-cv
+* mjpg-streamer-py
 * opencv3
 * opencv3-dev
 * opencv3-java

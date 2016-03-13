@@ -18,6 +18,7 @@
 TGZ ?= $(lastword $(subst /, ,${SOURCE}))
 BUILD_DIR ?= $(subst .tgz,,$(subst .tar.gz,,${TGZ}))
 BUILD_USER ?= admin
+GETDATA_EXTRA ?= /bin/true
 
 .PHONY: all init-ssh init-robotpy-opkg sync-date install-deps fetch extract build install fetch-src getdata
 
@@ -86,4 +87,5 @@ getdata:
 	rm -rf data.new
 	mkdir data.new
 	cd data.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_TARARGS}' | tar xf -
+	${GETDATA_EXTRA}
 	rm -rf data.old && mv data data.old && mv data.new data

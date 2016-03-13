@@ -6,6 +6,9 @@ By default, this package will install mjpg-streamer so that it starts on bootup 
 This package supports multiple cameras. To change the settings, you should
 modify /etc/default/mjpg-streamer
 
+If you wish to use the OpenCV input plugin, install the `mjpg-streamer-cv`
+package.
+
 Access the camera
 -----------------
 
@@ -31,6 +34,21 @@ you would add the following to the config file:
 	
 Some settings do not work on all cameras, or may not support all ranges. The 
 best way to find out what settings will work is to try them in the web interface.
+
+OpenCV filter support
+---------------------
+
+mjpg_streamer now supports OpenCV input plugins that you can use to filter the
+input images! It's very simple to do (especially if you're using Python), so
+please see the [upstream documentation for more information](https://github.com/mjpg-streamer/mjpg-streamer/tree/master/mjpg-streamer-experimental/plugins/input_opencv)
+on how to write your own filter. To use your filter, just install the `mjpg-streamer-cv`
+or `mjpg-streamer-py` packages.
+
+*Note*: exposure control doesn't seem to work on OpenCV 3.1 for the Lifecam 3000
+cameras... there's a good work around though! We've added the v4l-utils package
+as a dependency, so you can use this command from it:
+
+	v4l2-ctl -c exposure_auto=1 -c exposure_absolute=10
 
 Debugging problems
 ------------------
