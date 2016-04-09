@@ -1,5 +1,5 @@
 Package: mjpg-streamer
-Version: 2016.3.0
+Version: 2016.3.0-r1
 Description: Sends video via MJPG stream
 Section: devel
 Priority: optional
