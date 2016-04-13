@@ -9,6 +9,7 @@
 # BUILD_DEPS - a space-delimited list of opkg dependencies (for install-deps)
 # BUILD_DIR - the directory where the TGZ gets extracted to.
 #             defaults to TGZ with .tgz and .tar.gz stripped
+# BUILD_DIR_EXTRA - the directory inside the TGZ that builds should happen in
 # BUILD_WARNING - warning to print before build
 # BUILD_CMD - the build command
 # INSTALL_CMD - the install command
@@ -54,7 +55,7 @@ ${TGZ}:
 
 extract: ${TGZ}
 	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && rm -rf ${BUILD_DIR}'
-	cat ${TGZ} | ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && tar xzf -'
+	cat ${TGZ} | ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && mkdir ${BUILD_DIR} && cd ${BUILD_DIR} && tar xzf - --strip-components=1'
 
 build:
 ifdef BUILD_WARNING
@@ -64,10 +65,10 @@ ifdef BUILD_WARNING
 	@echo "Press ENTER to continue"
 	@bash -c read
 endif
-	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR} && ${BUILD_CMD}'
+	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR}/${BUILD_DIR_EXTRA} && ${BUILD_CMD}'
 
 install:
-	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR} && ${INSTALL_CMD}'
+	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR}/${BUILD_DIR_EXTRA} && ${INSTALL_CMD}'
 ifneq ($(strip ${EXES}),)
 	ssh ${BUILD_USER}@${ROBORIO} 'for exes in ${EXES}; do for exe in /$$exes; do \
 		fdir=$$(dirname $$exe) && fbase=$$(basename "$$exe") && \
@@ -87,3 +88,4 @@ getdata:
 	mkdir data.new
 	cd data.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_TARARGS}' | tar xf -
 	rm -rf data.old && mv data data.old && mv data.new data
+	[ ! -d extra ] || cp -r extra/* data/
