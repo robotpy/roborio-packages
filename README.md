@@ -2,7 +2,7 @@ RobotPy RoboRIO Packages
 ========================
 
 This repository contains the build files used to build the RobotPy .ipk
-packages hosted at http://www.tortall.net/~robotpy/feeds/2016/.
+packages hosted at http://www.tortall.net/~robotpy/feeds/2017/.
 
 Package Installation
 ====================
@@ -22,10 +22,10 @@ Currently, we have the following binary packages available:
 * python2-dev
 * python27-numpy
 * python27-opencv3
-* python3
-* python3-dev
-* python35-numpy
-* python35-opencv3
+* python36
+* python36-dev
+* python36-numpy
+* python36-opencv3
 
 We support online (RoboRIO connected to the internet) and offline installation
 of the packages.
