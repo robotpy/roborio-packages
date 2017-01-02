@@ -7,4 +7,4 @@ all:
 
 getdata: ;
 
-include ../Mk/ipk.mk
+include ${BUILD_ROOT}/Mk/ipk.mk
