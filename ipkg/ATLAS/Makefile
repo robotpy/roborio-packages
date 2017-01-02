@@ -1,12 +1,10 @@
-include ../Mk/pkgdata.mk
 
-.PHONY: all getdata
+.PHONY: all clean 	
+
+clean:
+	$(MAKE) -C ATLAS clean
+	$(MAKE) -C ATLAS-dev clean
 
 all:
-	$(MAKE) package
-
-getdata:
-	mkdir -p data/usr/local/lib
-	cp -p ../../atlas_libs/lib/*.so data/usr/local/lib/
-
-include ../Mk/ipk.mk
+	$(MAKE) -C ATLAS all
+	$(MAKE) -C ATLAS-dev all
