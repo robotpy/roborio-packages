@@ -1,3 +1,0 @@
-#!/bin/sh
-# delete compiled library files
-find /usr/local/lib/python3.5/test -name __pycache__ -type d -prune -exec rm -r '{}' ';'

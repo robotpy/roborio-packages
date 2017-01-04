@@ -1,12 +1,12 @@
-Package: python3-dev
-Version: 3.5.1
+Package: python36-dev
+Version: 3.6.0
 Description: Python programming language development files
 Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: cortexa9-vfpv3
-OE: python3
+OE: python36
 Homepage: http://www.python.org
-Depends: python3 (= 3.5.1)
-Source: https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
+Depends: python36 (= 3.6.0)
+Source: https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz
