@@ -19,6 +19,7 @@
 TGZ ?= $(lastword $(subst /, ,${SOURCE}))
 BUILD_DIR ?= $(subst .tgz,,$(subst .tar.gz,,${TGZ}))
 BUILD_USER ?= admin
+STACK_SIZE ?= 4096
 
 .PHONY: all init-ssh init-robotpy-opkg sync-date install-deps fetch extract build install fetch-src getdata
 
@@ -55,10 +56,10 @@ ifdef BUILD_WARNING
 	@echo "Press ENTER to continue"
 	@bash -c read
 endif
-	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR}/${BUILD_DIR_EXTRA} && ${BUILD_CMD}'
+	ssh ${BUILD_USER}@${ROBORIO} 'ulimit -s ${STACK_SIZE} && cd ${BUILD_HOME} && cd ${BUILD_DIR}/${BUILD_DIR_EXTRA} && ${BUILD_CMD}'
 
 install:
-	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR}/${BUILD_DIR_EXTRA} && ${INSTALL_CMD}'
+	ssh ${BUILD_USER}@${ROBORIO} 'ulimit -s ${STACK_SIZE} && cd ${BUILD_HOME} && cd ${BUILD_DIR}/${BUILD_DIR_EXTRA} && ${INSTALL_CMD}'
 ifneq ($(strip ${EXES}),)
 	ssh ${BUILD_USER}@${ROBORIO} 'for exes in ${EXES}; do for exe in /$$exes; do \
 		fdir=$$(dirname $$exe) && fbase=$$(basename "$$exe") && \
