@@ -3,6 +3,7 @@ VERSION ?= $(shell grep Version: control | cut -c 10-)
 ARCH ?= $(shell grep Architecture: control | cut -c 15-)
 SOURCE ?= $(shell grep Source: control | cut -c 9-)
 
+# Keep synced with remote_whl.mk
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_ROOT = $(abspath ${mkfile_path}/../..)
 
