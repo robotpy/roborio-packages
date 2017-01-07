@@ -1,0 +1,10 @@
+Package: netconsole-host
+Version: 1.0
+Description: FRC Netconsole Program
+Section: devel
+Priority: optional
+Maintainer: RobotPy Developers <robotpy@googlegroups.com>
+License: BSD
+Architecture: cortexa9-vfpv3
+Homepage: https://github.com/wpilibsuite/EclipsePlugins
+Depends: libc6
