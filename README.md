@@ -18,10 +18,6 @@ Currently, we have the following binary packages available:
 * opencv3
 * opencv3-dev
 * opencv3-java
-* python2
-* python2-dev
-* python27-numpy
-* python27-opencv3
 * python36
 * python36-dev
 * python36-numpy
@@ -36,7 +32,7 @@ Installing a package (online)
 Create a `.conf` file in `/etc/opkg` (e.g. `/etc/opkg/robotpy.conf`)
 containing the following line:
 
-    src/gz robotpy http://www.tortall.net/~robotpy/feeds/2016
+    src/gz robotpy http://www.tortall.net/~robotpy/feeds/2017
 
 Then run `opkg update`. After you setup the opkg feed, you can run:
 
