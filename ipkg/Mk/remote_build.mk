@@ -47,6 +47,9 @@ ${TGZ}:
 extract: ${TGZ}
 	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && rm -rf ${BUILD_DIR}'
 	cat ${TGZ} | ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && mkdir ${BUILD_DIR} && cd ${BUILD_DIR} && tar xzf - --strip-components=1'
+ifdef PATCHES
+	$(foreach patch, $(PATCHES), ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && cd ${BUILD_DIR} && patch -p1' < $(patch))
+endif	
 
 build:
 ifdef BUILD_WARNING
