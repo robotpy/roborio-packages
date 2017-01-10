@@ -4,6 +4,8 @@ DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev libgcov-dev make
 
 BUILD_CMD = CXX=/usr/bin/g++ ./configure --enable-shared --with-system-expat --with-system-ffi --enable-optimizations && make
 
+PATCHES = random.patch
+
 INSTALL_CMD = make install
 
 GETDATA_TARARGS = --exclude=usr/local/lib/python3.6/site-packages/numpy\* \
