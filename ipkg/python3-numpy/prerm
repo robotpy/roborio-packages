@@ -1,3 +1,0 @@
-#!/bin/sh
-# delete compiled library files
-find /usr/local/lib/python3.5/site-packages/numpy -type d -name __pycache__ -prune -exec rm -r '{}' ';'

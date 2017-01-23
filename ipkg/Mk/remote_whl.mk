@@ -12,7 +12,7 @@ ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps mkwheelhouse build 
 BUILD_DIR ?= wheelhouse
 BUILD_CMD ?= /usr/local/bin/pip3 --disable-pip-version-check install wheel && /usr/local/bin/pip3 -v --disable-pip-version-check wheel --no-deps -b . ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
 
-DEPS ?= binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev make python36-dev ${EXTRA_DEPS}
+DEPS ?= binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev make python36-dev ${IPK_DEPS}
 
 include ${BUILD_ROOT}/Mk/remote_build.mk
 
