@@ -50,7 +50,8 @@ class IPackageControl(object):
 
             if not l:
                 continue
-            field, val = l.split(": ", 2)
+            
+            field, val = l.split(": ", 1)
             if field == "Description":
                 desc = [val]
             else:
