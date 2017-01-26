@@ -37,7 +37,7 @@ sync-date:
 
 install-deps:
 ifneq ($(strip ${DEPS}),)
-	ssh ${BUILD_USER}@${ROBORIO} 'opkg update && opkg install ${DEPS}'
+	ssh ${BUILD_USER}@${ROBORIO} 'opkg update && opkg install ${DEPS} && opkg clean'
 endif
 
 fetch: ${TGZ}
