@@ -1,5 +1,5 @@
 /ipkg/*.ipk
-/ipkg/*.whl
+/ipkg/**/*.whl
 /ipkg/**/debian-binary
 /ipkg/**/*.tar.gz
 /ipkg/**/*.tgz
