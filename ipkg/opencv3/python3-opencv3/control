@@ -1,11 +1,11 @@
-Package: opencv3
+Package: python36-opencv3
 Version: 3.2.0
-Description: Open Source Computer Vision Library
+Description: Open Source Computer Vision Library (Python 3.6 bindings)
 Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: cortexa9-vfpv3
 Homepage: http://opencv.org/
-Depends: libc6, libstdc++6
+Depends: opencv3 (= 3.2.0), python36-numpy (>= 1.12.0)
 Source: https://github.com/Itseez/opencv/archive/3.2.0.tar.gz

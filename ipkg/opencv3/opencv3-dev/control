@@ -1,5 +1,5 @@
 Package: opencv3-dev
-Version: 3.1.0-r2
+Version: 3.2.0
 Description: Open Source Computer Vision Library (development files)
 Section: devel
 Priority: optional
@@ -7,5 +7,5 @@ Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: cortexa9-vfpv3
 Homepage: http://opencv.org/
-Depends: opencv3 (= 3.1.0-r2), opencv3-java (= 3.1.0-r2)
-Source: https://github.com/Itseez/opencv/archive/3.1.0.tar.gz
+Depends: opencv3 (= 3.2.0)
+Source: https://github.com/Itseez/opencv/archive/3.2.0.tar.gz

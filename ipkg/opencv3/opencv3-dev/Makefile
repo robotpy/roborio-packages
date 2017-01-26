@@ -1,7 +1,6 @@
-IPK_DEST = ../..
 include ../../Mk/pkgdata.mk
 
-.PHONY: all getdata
+.PHONY: getdata
 
 all:
 	$(MAKE) clean
@@ -15,4 +14,4 @@ getdata:
 		'*/include/*' \
 		'*/share/OpenCV/*.cmake'
 
-include ../../Mk/ipk.mk
+include ${BUILD_ROOT}/Mk/ipk.mk
