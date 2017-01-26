@@ -110,7 +110,7 @@ class WheelConverter:
     
         # Create the post-install script to create all pyc files
         postinst = inspect.cleandoc('''
-            #!/usr/bin/env %(py)s
+            #!%(scripts)s/%(py)s
 
             import compileall
             import csv
@@ -125,7 +125,8 @@ class WheelConverter:
         postinst %= {
             'py': self.py,
             'purelib': self.paths['purelib'],
-            'record': self.whl.record_name
+            'record': self.whl.record_name,
+            'scripts': self.paths['scripts'],
         }
         
         # Write the tarfile
