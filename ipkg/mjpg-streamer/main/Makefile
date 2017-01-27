@@ -2,7 +2,7 @@ IPK_DEST = ../..
 include ../../Mk/pkgdata.mk
 
 DEPS = binutils-symlinks gcc-symlinks libgcc-s-dev g++-symlinks libstdc++-dev make libjpeg-dev coreutils \
-		cmake opencv3-dev python35-numpy python3-dev
+		cmake opencv3-dev python36-numpy python36-dev
 
 BUILD_DIR_EXTRA = /mjpg-streamer-experimental
 BUILD_CMD = make

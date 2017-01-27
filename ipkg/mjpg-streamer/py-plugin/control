@@ -1,5 +1,5 @@
 Package: mjpg-streamer-py
-Version: 2016.3.0-r2
+Version: 2017.0.0
 Description: Python plugin for mjpg-streamer
 Section: devel
 Priority: optional
@@ -7,5 +7,5 @@ Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: GPL
 Architecture: cortexa9-vfpv3
 Homepage: https://github.com/mjpg-streamer/mjpg-streamer
-Depends: mjpg-streamer-cv (= 2016.3.0-r2), python35-opencv3 (= 3.1.0-r2)
-Source: https://github.com/robotpy/mjpg-streamer/archive/2016.3.0.tar.gz
+Depends: mjpg-streamer-cv (= 2017.0.0), python35-opencv3 (= 3.2.0)
+Source: https://github.com/robotpy/mjpg-streamer/archive/2017.0.0.tar.gz
