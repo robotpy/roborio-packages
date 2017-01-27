@@ -12,25 +12,17 @@ Currently, we have the following binary packages available:
 * ATLAS
 * ATLAS-dev
 * libgfortran
-* python36
-* python36-dev
-
-At the moment, the following packages have not been built, but will be added
-during the 2017 season:
-
 * mjpg-streamer ([notes](ipkg/mjpg-streamer/README.md))
 * mjpg-streamer-cv
 * mjpg-streamer-py
 * opencv3
 * opencv3-dev
-* opencv3-java
+* python36
+* python36-dev
 * python36-numpy
 * python36-opencv3
-
-Additionally, the following packages are anticipated to be added:
-
-* robotpy-ctre
-* robotpy-cscore
+* python36-robotpy-cscore
+* python36-robotpy-ctre
 
 We support online (RoboRIO connected to the internet) and offline installation
 of the packages.
