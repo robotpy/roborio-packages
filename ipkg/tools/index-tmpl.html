@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>{{ title }}</title>
+</head>
+<body>
+<h2>{{ title }}</h2>
+<div>
+These are precompiled binary packages that you can download and install on your
+RoboRIO. These packages are maintained by the <a href="https://robotpy.github.io">RobotPy project</a>,
+and are not officially supported or endorsed by FIRST or NI. Teams can use these
+packages at their own risk.
+
+<ul>
+  <li>Installation instructions @ <a href="http://robotpy.readthedocs.io/en/stable/install/packages.html">RobotPy documentation site</a></li>
+  <li>More information @ <a href="https://github.com/robotpy/roborio-packages">robotpy/roborio-packages</a></li>
+</ul>
+
+</div>
+  <h3>Available packages:</h3>
+  <table>
+    <tr><th>Name</th><th>Version</th><th colspan=2>Description</th></tr>
+    {% for package in packages %}
+      <tr><td>
+        {% if package.Homepage != "unknown"  %}
+          <a href="{{ package.Homepage }}">{{ package.Package }}</a>
+        {% else %}
+          {{ package.Package }}
+        {% endif %}
+          </td><td>{{ package.Version }}</td>
+          <td>{{ package.Description}}</td><td><a href="{{ package.Filename }}">Download</a></tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

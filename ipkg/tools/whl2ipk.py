@@ -106,6 +106,12 @@ class WheelConverter:
         if self.depends:
             control.append('Depends: %s' % self.depends)
         
+        try:
+            homepage = metadata['extensions']['python.details']['project_urls']['Home']
+            control.append('Homepage: %s' % homepage)
+        except KeyError:
+            pass
+        
         control.append('Source: https://pypi.python.org/pypi/%s/%s' % (self.pyname, metadata['version']))
     
         # Create the post-install script to create all pyc files

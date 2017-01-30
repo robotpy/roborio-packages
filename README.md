@@ -2,30 +2,8 @@ RobotPy RoboRIO Packages
 ========================
 
 This repository contains the build files used to build the RobotPy .ipk
-packages hosted at http://www.tortall.net/~robotpy/feeds/2017/.
-
-Package Installation
-====================
-
-Currently, we have the following binary packages available:
-
-* ATLAS
-* ATLAS-dev
-* libgfortran
-* mjpg-streamer ([notes](ipkg/mjpg-streamer/README.md))
-* mjpg-streamer-cv
-* mjpg-streamer-py
-* opencv3
-* opencv3-dev
-* python36
-* python36-dev
-* python36-numpy
-* python36-opencv3
-* python36-robotpy-cscore
-* python36-robotpy-ctre
-
-We support online (RoboRIO connected to the internet) and offline installation
-of the packages.
+packages hosted at https://www.tortall.net/~robotpy/feeds/2017/. The current
+list of published packages can be found at that URL.
 
 Installing a package (online)
 -----------------------------
@@ -33,7 +11,7 @@ Installing a package (online)
 Create a `.conf` file in `/etc/opkg` (e.g. `/etc/opkg/robotpy.conf`)
 containing the following line:
 
-    src/gz robotpy http://www.tortall.net/~robotpy/feeds/2017
+    src/gz robotpy https://www.tortall.net/~robotpy/feeds/2017
 
 Then run `opkg update`. After you setup the opkg feed, you can run:
 

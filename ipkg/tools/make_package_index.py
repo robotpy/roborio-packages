@@ -26,8 +26,14 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import glob
-import ipkg
 import gzip
+from os.path import join
+import sys
+
+import jinja2
+
+import ipkg
+
 
 def main():
     packages = ipkg.IPackageList()
@@ -47,6 +53,18 @@ def main():
 
     with open("Packages.filelist", "wt") as f:
         files.write_list(f)
+        
+    # Render an index.html
+    vars = {
+        'title': sys.argv[1],
+        'packages': [control for _, control in sorted(packages.packages.items())]
+    }
+        
+    with open(join('tools', 'index-tmpl.html')) as f:
+        template = jinja2.Template(f.read())
+        
+    with open("index.html", "wt") as f:
+        f.write(template.render(**vars))
 
 if __name__ == "__main__":
     main()
