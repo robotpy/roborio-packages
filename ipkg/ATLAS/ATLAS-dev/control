@@ -1,6 +1,6 @@
 Package: ATLAS-dev
 Version: 3.10.2
-Description: Automatically Tuned Linear Algebra Software
+Description: Automatically Tuned Linear Algebra Software (development files)
 Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
