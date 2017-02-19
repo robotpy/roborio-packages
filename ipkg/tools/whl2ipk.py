@@ -157,7 +157,10 @@ class WheelConverter:
 
             # Use a prerm script to remove all pyc files
             _add('prerm',
-                 '#!/bin/bash\npip3 --disable-pip-version-check uninstall -y %s\n' % metadata['name'],
+                 '#!/bin/bash\n%(scripts)/pip3 --disable-pip-version-check uninstall -y %(name)s\n' % {
+                     'name': metadata['name'],
+                     'scripts': self.paths['scripts'],
+                 },
                  0o755)
     
     def create_data(self, datadir, output_fname):
