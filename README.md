@@ -20,7 +20,7 @@ Then run `opkg update`. After you setup the opkg feed, you can run:
 Installing a package (offline)
 ------------------------------
 
-You can use the [RobotPy Installer Script](https://github.com/robotpy/robotpy-wpilib/blob/master/installer/installer.py)
+You can use the [RobotPy Installer Script](http://robotpy.readthedocs.io/en/stable/install/packages.html)
 to do offline opkg installs. First, download the package:
 
     python3 installer.py download-opkg PACKAGENAME
