@@ -6,9 +6,10 @@ all:
 	$(MAKE) package
 
 getdata:
+	rm -rf data
 	mkdir -p data/usr/local/lib
-	mkdir -p data/usr/local/include
-	cp -p ${BUILD_ROOT}/../atlas_libs/lib/*.a data/usr/local/lib/
-	cp -Rp ${BUILD_ROOT}/../atlas_libs/include/* data/usr/local/include/
+	tar -xf ${ATLASZIP} -C data/usr/local \
+		'./include/*' \
+		'./lib/*.a'
 
 include ${BUILD_ROOT}/Mk/ipk.mk

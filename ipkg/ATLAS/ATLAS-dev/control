@@ -1,5 +1,5 @@
 Package: ATLAS-dev
-Version: 3.10.2
+Version: 3.10.3
 Description: Automatically Tuned Linear Algebra Software (development files)
 Section: devel
 Priority: optional
@@ -8,5 +8,5 @@ License: BSD
 Architecture: cortexa9-vfpv3
 OE: ATLAS
 Homepage: http://www.vesperix.com/arm/atlas-arm/
-Depends: ATLAS (= 3.10.2)
-Source: http://downloads.sourceforge.net/project/math-atlas/Stable/3.10.2/atlas3.10.2.tar.bz2
+Depends: ATLAS (= 3.10.3)
+Source: http://downloads.sourceforge.net/project/math-atlas/Stable/3.10.3/atlas3.10.3.tar.bz2
