@@ -1,6 +1,0 @@
-#!/bin/sh
-if [ x"$D" = "x" ]; then
-	if [ -x /sbin/ldconfig ]; then /sbin/ldconfig ; fi
-fi
-
-/usr/sbin/update-rc.d -s mjpg-streamer defaults 89
