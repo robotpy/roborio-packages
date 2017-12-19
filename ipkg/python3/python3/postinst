@@ -5,19 +5,19 @@ fi
 # compile library files
 /usr/bin/env PYTHONPATH=/usr/local/lib/python3.6 LD_LIBRARY_PATH=/usr/local/lib \
     /usr/local/bin/python3 -Wi /usr/local/lib/python3.6/compileall.py \
-    -d lib/python3.6 -f \
+    -d lib/python3.6 -f -q \
     -x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
     /usr/local/lib/python3.6
 /usr/bin/env PYTHONPATH=/usr/local/lib/python3.6 LD_LIBRARY_PATH=/usr/local/lib \
     /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.6/compileall.py \
-    -d lib/python3.6 -f \
+    -d lib/python3.6 -f -q \
     -x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
     /usr/local/lib/python3.6
 /usr/bin/env PYTHONPATH=/usr/local/lib/python3.6 LD_LIBRARY_PATH=/usr/local/lib \
     /usr/local/bin/python3 -Wi /usr/local/lib/python3.6/compileall.py \
-    -d lib/python3.6/site-packages -f \
+    -d lib/python3.6/site-packages -f -q \
     -x badsyntax /usr/local/lib/python3.6/site-packages
 /usr/bin/env PYTHONPATH=/usr/local/lib/python3.6 LD_LIBRARY_PATH=/usr/local/lib \
     /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.6/compileall.py \
-    -d lib/python3.6/site-packages -f \
+    -d lib/python3.6/site-packages -f -q \
     -x badsyntax /usr/local/lib/python3.6/site-packages
