@@ -1,5 +1,5 @@
 Package: python36-dbg
-Version: 3.6.0-r1
+Version: 3.6.3-r0
 Description: Python programming language debug files
 Section: devel
 Priority: optional
@@ -8,5 +8,5 @@ License: BSD
 Architecture: cortexa9-vfpv3
 OE: python36
 Homepage: http://www.python.org
-Depends: python36 (= 3.6.0-r1)
-Source: https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz
+Depends: python36 (= 3.6.3-r0)
+Source: https://www.python.org/ftp/python/3.6.3/Python-3.6.3.tgz
