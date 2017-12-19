@@ -16,11 +16,13 @@ BUILD_ROOT = $(abspath ${mkfile_path}/../..)
 ARCH=cortexa9-vfpv3
 PYVERSION=3.6
 PYNAME=python36
+RELEASE=2018-dev
 
-WHL_DEST ?= ${BUILD_ROOT}
+IPK_DEST ?= ${BUILD_ROOT}/${RELEASE}
+WHL_DEST ?= ${BUILD_ROOT}/${RELEASE}
 WHL_NAME ?= $(subst -,_,${PYPI_PACKAGE_NAME})-${PYPI_PACKAGE_VERSION}-cp36-cp36m-linux_armv7l.whl
 IPK_PKGNAME ?= ${PYNAME}-${PYPI_PACKAGE_NAME}
-IPK_NAME ?= ${BUILD_ROOT}/${IPK_PKGNAME}_${PYPI_PACKAGE_VERSION}_${ARCH}.ipk
+IPK_NAME ?= ${IPK_DEST}/${IPK_PKGNAME}_${PYPI_PACKAGE_VERSION}_${ARCH}.ipk
 
 ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps mkwheelhouse build whl whl2ipk
 

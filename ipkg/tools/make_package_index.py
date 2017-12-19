@@ -27,7 +27,7 @@
 
 import glob
 import gzip
-from os.path import join
+from os.path import dirname, join
 import sys
 
 import jinja2
@@ -60,7 +60,7 @@ def main():
         'packages': [control for _, control in sorted(packages.packages.items())]
     }
         
-    with open(join('tools', 'index-tmpl.html')) as f:
+    with open(join(dirname(__file__), 'index-tmpl.html')) as f:
         template = jinja2.Template(f.read())
         
     with open("index.html", "wt") as f:

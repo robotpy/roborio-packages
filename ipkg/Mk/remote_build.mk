@@ -30,7 +30,7 @@ init-ssh:
 	ssh ${BUILD_USER}@${ROBORIO} 'mkdir -p .ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 
 init-robotpy-opkg:
-	ssh ${BUILD_USER}@${ROBORIO} 'echo "src/gz robotpy http://www.tortall.net/~robotpy/feeds/2017-dev" > /etc/opkg/robotpy.conf'
+	ssh ${BUILD_USER}@${ROBORIO} 'echo "src/gz robotpy http://www.tortall.net/~robotpy/feeds/2018-dev" > /etc/opkg/robotpy.conf'
 
 sync-date:
 	ssh ${BUILD_USER}@${ROBORIO} "date -s '`date -u +'%Y-%m-%d %H:%m:%S'`'"
