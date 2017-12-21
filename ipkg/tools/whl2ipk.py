@@ -157,7 +157,7 @@ class WheelConverter:
 
             # Use a prerm script to remove all pyc files
             _add('prerm',
-                 '#!/bin/bash\n%(scripts)/pip3 --disable-pip-version-check uninstall -y %(name)s\n' % {
+                 '#!/bin/bash\n%(scripts)s/pip3 --disable-pip-version-check uninstall -y %(name)s\n' % {
                      'name': metadata['name'],
                      'scripts': self.paths['scripts'],
                  },
