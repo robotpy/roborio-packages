@@ -3,6 +3,7 @@
 /ipkg/**/debian-binary
 /ipkg/**/*.tar.gz
 /ipkg/**/*.tgz
+/ipkg/**/*.tar.bz2
 /ipkg/**/data*
 /ipkg/Packages*
 /ipkg/index.html
