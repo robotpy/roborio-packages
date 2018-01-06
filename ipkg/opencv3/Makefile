@@ -1,5 +1,5 @@
 
-BINRELEASE = https://github.com/robotpy/roborio-opencv/releases/download/2018.0-beta1/OpenCV-3.3.1-cortexa9-vfpv3.tar.gz
+BINRELEASE = https://github.com/robotpy/roborio-opencv/releases/download/2018.0.0/OpenCV-3.4.0-cortexa9-vfpv3.tar.gz
 CVZIP = $(abspath $(notdir ${BINRELEASE}))
 
 export CVZIP
@@ -9,7 +9,7 @@ export CVZIP
 ${CVZIP}:
 	wget ${BINRELEASE}
 
-fetch: ${CVZIP} ;	
+fetch: ${CVZIP} ;
 
 clean:
 	$(MAKE) -C opencv3 clean
@@ -21,4 +21,3 @@ all:
 	$(MAKE) -C opencv3 all
 	$(MAKE) -C opencv3-dev all
 	$(MAKE) -C python3-opencv3 all
-
