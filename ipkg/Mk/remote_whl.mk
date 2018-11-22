@@ -18,9 +18,17 @@ PYVERSION=3.6
 PYNAME=python36
 RELEASE=2018-dev
 
+PURE_PYTHON ?= false
+
+ifeq ($(PURE_PYTHON), true)
+	WHL_PLATFORM ?= py2.py3-none-any
+else
+	WHL_PLATFORM ?= cp36-cp36m-linux_armv7l
+endif
+
 IPK_DEST ?= ${BUILD_ROOT}/${RELEASE}
 WHL_DEST ?= ${BUILD_ROOT}/${RELEASE}
-WHL_NAME ?= $(subst -,_,${PYPI_PACKAGE_NAME})-${PYPI_PACKAGE_VERSION}-cp36-cp36m-linux_armv7l.whl
+WHL_NAME ?= $(subst -,_,${PYPI_PACKAGE_NAME})-${PYPI_PACKAGE_VERSION}-${WHL_PLATFORM}.whl
 IPK_PKGNAME ?= ${PYNAME}-${PYPI_PACKAGE_NAME}
 IPK_NAME ?= ${IPK_DEST}/${IPK_PKGNAME}_${PYPI_PACKAGE_VERSION}_${ARCH}.ipk
 
@@ -57,4 +65,3 @@ ${IPK_NAME}: ${WHL_NAME}
 whl: ${WHL_NAME}
 	
 whl2ipk: ${IPK_NAME}
-
