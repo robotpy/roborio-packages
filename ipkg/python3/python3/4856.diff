@@ -1,8 +1,8 @@
 diff --git a/Lib/compileall.py b/Lib/compileall.py
-index 1c9ceb6930..5e919e3b29 100644
+index 72592126d7..f41241ea3d 100644
 --- a/Lib/compileall.py
 +++ b/Lib/compileall.py
-@@ -16,10 +16,9 @@ import importlib.util
+@@ -16,10 +16,6 @@ import importlib.util
  import py_compile
  import struct
  
@@ -10,38 +10,37 @@ index 1c9ceb6930..5e919e3b29 100644
 -    from concurrent.futures import ProcessPoolExecutor
 -except ImportError:
 -    ProcessPoolExecutor = None
-+# Only import when needed, as low resource platforms may fail to import it
-+ProcessPoolExecutor = None
-+
  from functools import partial
  
  __all__ = ["compile_dir","compile_file","compile_path"]
-@@ -68,13 +67,19 @@ def compile_dir(dir, maxlevels=10, ddir=None, force=False, rx=None,
-     optimize:  optimization level or -1 for level of the interpreter
+@@ -70,13 +66,21 @@ def compile_dir(dir, maxlevels=10, ddir=None, force=False, rx=None,
      workers:   maximum number of parallel workers
+     invalidation_mode: how the up-to-dateness of the pyc will be checked
      """
 -    if workers is not None and workers < 0:
 -        raise ValueError('workers must be greater or equal to 0')
 -
-+    global ProcessPoolExecutor
++    ProcessPoolExecutor = None
 +    if workers is not None:
 +        if workers < 0:
 +            raise ValueError('workers must be greater or equal to 0')
-+        elif workers != 1 and ProcessPoolExecutor is None:
++        elif workers > 1:
 +            try:
++                # Only import when needed, as low resource platforms may
++                # fail to import it
 +                from concurrent.futures import ProcessPoolExecutor
 +            except ImportError:
-+                ProcessPoolExecutor = False
++                workers = 1
      files = _walk_dir(dir, quiet=quiet, maxlevels=maxlevels,
                        ddir=ddir)
      success = True
 -    if workers is not None and workers != 1 and ProcessPoolExecutor is not None:
-+    if workers is not None and workers != 1 and ProcessPoolExecutor:
++    if ProcessPoolExecutor:
          workers = workers or None
          with ProcessPoolExecutor(max_workers=workers) as executor:
              results = executor.map(partial(compile_file,
 diff --git a/Lib/test/test_compileall.py b/Lib/test/test_compileall.py
-index 2356efcaec..337a6ad8fb 100644
+index 38d7b996c7..3d06a1a1bd 100644
 --- a/Lib/test/test_compileall.py
 +++ b/Lib/test/test_compileall.py
 @@ -183,7 +183,7 @@ class CompileallTests(unittest.TestCase):
