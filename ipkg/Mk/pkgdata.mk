@@ -6,7 +6,7 @@ SOURCE ?= $(shell grep Source: control | cut -c 9-)
 # Keep synced with remote_whl.mk
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_ROOT = $(abspath ${mkfile_path}/../..)
-RELEASE = 2018-dev
+RELEASE = 2019-dev
 
 IPK_DEST ?= ${BUILD_ROOT}/${RELEASE}
 IPK_NAME = ${IPK_DEST}/${PACKAGE}_${VERSION}_${ARCH}.ipk
