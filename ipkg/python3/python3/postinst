@@ -3,21 +3,21 @@ if [ x"$D" = "x" ]; then
 	if [ -x /sbin/ldconfig ]; then /sbin/ldconfig ; fi
 fi
 # compile library files
-/usr/bin/env PYTHONPATH=/usr/local/lib/python3.6 LD_LIBRARY_PATH=/usr/local/lib \
-    /usr/local/bin/python3 -Wi /usr/local/lib/python3.6/compileall.py \
-    -d lib/python3.6 -f -q \
+/usr/bin/env PYTHONPATH=/usr/local/lib/python3.7 LD_LIBRARY_PATH=/usr/local/lib \
+    /usr/local/bin/python3 -Wi /usr/local/lib/python3.7/compileall.py \
+    -d lib/python3.7 -f -q \
     -x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
-    /usr/local/lib/python3.6
-/usr/bin/env PYTHONPATH=/usr/local/lib/python3.6 LD_LIBRARY_PATH=/usr/local/lib \
-    /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.6/compileall.py \
-    -d lib/python3.6 -f -q \
+    /usr/local/lib/python3.7
+/usr/bin/env PYTHONPATH=/usr/local/lib/python3.7 LD_LIBRARY_PATH=/usr/local/lib \
+    /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.7/compileall.py \
+    -d lib/python3.7 -f -q \
     -x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
-    /usr/local/lib/python3.6
-/usr/bin/env PYTHONPATH=/usr/local/lib/python3.6 LD_LIBRARY_PATH=/usr/local/lib \
-    /usr/local/bin/python3 -Wi /usr/local/lib/python3.6/compileall.py \
-    -d lib/python3.6/site-packages -f -q \
-    -x badsyntax /usr/local/lib/python3.6/site-packages
-/usr/bin/env PYTHONPATH=/usr/local/lib/python3.6 LD_LIBRARY_PATH=/usr/local/lib \
-    /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.6/compileall.py \
-    -d lib/python3.6/site-packages -f -q \
-    -x badsyntax /usr/local/lib/python3.6/site-packages
+    /usr/local/lib/python3.7
+/usr/bin/env PYTHONPATH=/usr/local/lib/python3.7 LD_LIBRARY_PATH=/usr/local/lib \
+    /usr/local/bin/python3 -Wi /usr/local/lib/python3.7/compileall.py \
+    -d lib/python3.7/site-packages -f -q \
+    -x badsyntax /usr/local/lib/python3.7/site-packages
+/usr/bin/env PYTHONPATH=/usr/local/lib/python3.7 LD_LIBRARY_PATH=/usr/local/lib \
+    /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.7/compileall.py \
+    -d lib/python3.7/site-packages -f -q \
+    -x badsyntax /usr/local/lib/python3.7/site-packages

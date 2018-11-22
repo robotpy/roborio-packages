@@ -14,16 +14,16 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_ROOT = $(abspath ${mkfile_path}/../..)
 
 ARCH=cortexa9-vfpv3
-PYVERSION=3.6
-PYNAME=python36
-RELEASE=2018-dev
+PYVERSION=3.7
+PYNAME=python37
+RELEASE=2019-dev
 
 PURE_PYTHON ?= false
 
 ifeq ($(PURE_PYTHON), true)
 	WHL_PLATFORM ?= py2.py3-none-any
 else
-	WHL_PLATFORM ?= cp36-cp36m-linux_armv7l
+	WHL_PLATFORM ?= cp37-cp37m-linux_armv7l
 endif
 
 IPK_DEST ?= ${BUILD_ROOT}/${RELEASE}
@@ -58,7 +58,7 @@ endif
 
 ${IPK_NAME}: ${WHL_NAME}
 	${BUILD_ROOT}/tools/whl2ipk.py ${WHL_NAME} ${IPK_NAME} \
-		--py 3.6 --depends python36 ${deps} \
+		--py ${PYVERSION} --depends ${PYNAME} ${deps} \
 		--maintainer 'RobotPy Developers <robotpy@googlegroups.com>' \
 		--arch ${ARCH} --pkgname=${IPK_PKGNAME}
 
