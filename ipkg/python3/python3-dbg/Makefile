@@ -8,7 +8,7 @@ BUILD_CMD = /bin/false
 
 INSTALL_CMD = /bin/false
 
-GETDATA_TARARGS = usr/local/bin/.debug/python3.7m \
+GETDATA_TARARGS = usr/local/bin/.debug/python3.debug \
 		  usr/local/lib/.debug/libpython3* \
 		  usr/local/lib/python3.7/lib-dynload/.debug
 
