@@ -1,5 +1,5 @@
 Package: python37-dev
-Version: 3.7.1-r0
+Version: 3.7.2-r0
 Description: Python programming language development files
 Section: devel
 Priority: optional
@@ -8,5 +8,5 @@ License: BSD
 Architecture: cortexa9-vfpv3
 OE: python37
 Homepage: http://www.python.org
-Depends: python37 (= 3.7.1-r0)
-Source: https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
+Depends: python37 (= 3.7.2-r0)
+Source: https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz

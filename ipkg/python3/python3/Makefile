@@ -34,7 +34,5 @@ EXES = usr/local/bin/python3.7m \
        usr/local/lib/libpython3.7m.so.1.0 \
        usr/local/lib/python3.7/lib-dynload/*.so
 
-PATCHES = 4856.diff
-
 include ../../Mk/remote_build.mk
 include ../../Mk/ipk.mk

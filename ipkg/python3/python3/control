@@ -1,5 +1,5 @@
 Package: python37
-Version: 3.7.1-r0
+Version: 3.7.2-r0
 Description: Python programming language
 Section: devel
 Priority: optional
@@ -10,4 +10,4 @@ OE: python37
 Homepage: http://www.python.org
 Depends: libc6
 Recommends: libreadline6
-Source: https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
+Source: https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz
