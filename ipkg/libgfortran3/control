@@ -1,5 +1,5 @@
 Package: libgfortran3
-Version: 5.3.0-r0
+Version: 6.3.0-r0
 Description: Fortran runtime
 Section: devel
 Priority: optional

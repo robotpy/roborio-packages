@@ -1,5 +1,5 @@
 
-BINRELEASE = https://github.com/robotpy/roborio-atlas/releases/download/3.10.3-r2018.0/atlas-3.10.3_cortexa9-vfpv3.tar.bz2
+BINRELEASE = https://github.com/robotpy/roborio-atlas/releases/download/3.10.3-r2019.0/atlas-3.10.3-r2019.0_cortexa9-vfpv3.tar.bz2
 ATLASZIP = $(abspath $(notdir ${BINRELEASE}))
 	
 export ATLASZIP
