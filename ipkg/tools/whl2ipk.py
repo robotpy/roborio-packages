@@ -37,7 +37,7 @@ import sys
 import tarfile
 import tempfile
 
-from wheel.install import WheelFile
+from wheel_0_31_1.install import WheelFile
 
 
 @contextlib.contextmanager
@@ -80,14 +80,28 @@ class WheelConverter:
         self.arch = arch
         self.depends = depends
 
+    def _load_metadata(self):
+        try:
+            raw_metadata = self.whl.zipfile.read(
+                "%s/metadata.json" % self.whl.distinfo_name
+            )
+        except KeyError:
+            pass
+        else:
+            return json.loads(raw_metadata.decode("utf-8"))
+
+        from email.parser import Parser
+
+        raw_metadata = self.whl.zipfile.read("%s/METADATA" % self.whl.distinfo_name)
+        return Parser().parsestr(raw_metadata.decode("utf-8"))
+
     def create_control(self, output_fname):
         """
             Creates the control scripts
         """
 
         # read the metadata
-        metadata_fname = "%s/metadata.json" % self.whl.distinfo_name
-        metadata = json.loads(self.whl.zipfile.read(metadata_fname).decode("utf-8"))
+        metadata = self._load_metadata()
 
         # Create the control file contents
         control = []
@@ -106,8 +120,10 @@ class WheelConverter:
             control.append("Depends: %s" % self.depends)
 
         try:
-            homepage = metadata["extensions"]["python.details"]["project_urls"]["Home"]
-            control.append("Homepage: %s" % homepage)
+            ext = metadata["extensions"]
+            if ext:
+                homepage = ext["python.details"]["project_urls"]["Home"]
+                control.append("Homepage: %s" % homepage)
         except KeyError:
             pass
 
