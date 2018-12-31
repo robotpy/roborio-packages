@@ -53,18 +53,19 @@ def main():
 
     with open("Packages.filelist", "wt") as f:
         files.write_list(f)
-        
+
     # Render an index.html
     vars = {
-        'title': sys.argv[1],
-        'packages': [control for _, control in sorted(packages.packages.items())]
+        "title": sys.argv[1],
+        "packages": [control for _, control in sorted(packages.packages.items())],
     }
-        
-    with open(join(dirname(__file__), 'index-tmpl.html')) as f:
+
+    with open(join(dirname(__file__), "index-tmpl.html")) as f:
         template = jinja2.Template(f.read())
-        
+
     with open("index.html", "wt") as f:
         f.write(template.render(**vars))
+
 
 if __name__ == "__main__":
     main()

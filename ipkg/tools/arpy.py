@@ -56,20 +56,28 @@ HEADER_GNU_TABLE = 3
 HEADER_GNU_SYMBOLS = 4
 HEADER_NORMAL = 5
 HEADER_TYPES = {
-        HEADER_BSD: 'BSD',
-        HEADER_GNU: 'GNU', HEADER_GNU_TABLE: 'GNU_TABLE',
-        HEADER_GNU_SYMBOLS: 'GNU_SYMBOLS',
-        HEADER_NORMAL: 'NORMAL'}
+    HEADER_BSD: "BSD",
+    HEADER_GNU: "GNU",
+    HEADER_GNU_TABLE: "GNU_TABLE",
+    HEADER_GNU_SYMBOLS: "GNU_SYMBOLS",
+    HEADER_NORMAL: "NORMAL",
+}
 
 GLOBAL_HEADER_LEN = 8
 HEADER_LEN = 60
 
+
 class ArchiveFormatError(Exception):
     """ Raised on problems with parsing the archive headers """
+
     pass
+
+
 class ArchiveAccessError(IOError):
     """ Raised on problems with accessing the archived files """
+
     pass
+
 
 class ArchiveFileHeader(object):
     """ File header of an archived file, or a special data segment """
@@ -79,7 +87,8 @@ class ArchiveFileHeader(object):
         import struct
 
         name, timestamp, uid, gid, mode, size, magic = struct.unpack(
-                "16s 12s 6s 6s 8s 10s 2s", header)
+            "16s 12s 6s 6s 8s 10s 2s", header
+        )
         if magic != b"\x60\x0a":
             raise ArchiveFormatError("file header magic doesn't match")
 
@@ -105,12 +114,13 @@ class ArchiveFileHeader(object):
 
         except ValueError as err:
             raise ArchiveFormatError(
-                    "cannot convert file header fields to integers", err)
+                "cannot convert file header fields to integers", err
+            )
 
         self.offset = offset
         name = name.rstrip()
         if len(name) > 1:
-            name = name.rstrip(b'/')
+            name = name.rstrip(b"/")
 
         if self.type == HEADER_NORMAL:
             self.name = name
@@ -122,8 +132,12 @@ class ArchiveFileHeader(object):
 
     def __repr__(self):
         """ Creates a human-readable summary of a header """
-        return '''<ArchiveFileHeader: "%s" type:%s size:%i>''' % (self.name,
-                HEADER_TYPES[self.type], self.size)
+        return """<ArchiveFileHeader: "%s" type:%s size:%i>""" % (
+            self.name,
+            HEADER_TYPES[self.type],
+            self.size,
+        )
+
 
 class ArchiveFileData(object):
     """ File-like object used for reading an archived file """
@@ -136,7 +150,7 @@ class ArchiveFileData(object):
         self.arobj = ar_obj
         self.last_offset = 0
 
-    def read(self, size = None):
+    def read(self, size=None):
         """ Reads the data from the archived file, simulates file.read """
         if size is None:
             size = self.header.size
@@ -156,10 +170,10 @@ class ArchiveFileData(object):
         """ Returns the position in archived file, simulates file.tell """
         return self.last_offset
 
-    def seek(self, offset, whence = 0):
+    def seek(self, offset, whence=0):
         """ Sets the position in archived file, simulates file.seek """
         if whence == 0:
-            pass # absolute
+            pass  # absolute
         elif whence == 1:
             offset += self.last_offset
         elif whence == 2:
@@ -171,8 +185,10 @@ class ArchiveFileData(object):
             raise ArchiveAccessError("incorrect file position")
         self.last_offset = offset
 
+
 class Archive(object):
     """ Archive object allowing reading of *.ar files """
+
     def __init__(self, filename=None, fileobj=None):
         self.headers = []
         self.file = fileobj or open(filename, "rb")
@@ -186,7 +202,7 @@ class Archive(object):
         self.archived_files = {}
 
     def _detect_seekable(self):
-        if hasattr(self.file, 'seekable'):
+        if hasattr(self.file, "seekable"):
             self.seekable = self.file.seekable()
         else:
             try:
@@ -206,7 +222,9 @@ class Archive(object):
             self.file.seek(offset)
             self.position = self.file.tell()
         elif offset < self.position:
-            raise ArchiveAccessError("cannot go back when reading archive from a stream")
+            raise ArchiveAccessError(
+                "cannot go back when reading archive from a stream"
+            )
         else:
             # emulate seek
             while self.position < offset:
@@ -248,7 +266,7 @@ class Archive(object):
 
         position = 0
         for filename in table_string.split(b"\n"):
-            self.gnu_table[position] = filename[:-1] # remove trailing '/'
+            self.gnu_table[position] = filename[:-1]  # remove trailing '/'
             position += len(filename) + 1
 
     def __fix_name(self, header):
@@ -276,7 +294,9 @@ class Archive(object):
         elif header.type == HEADER_GNU:
             gnu_position = int(header.proxy_name[1:])
             if gnu_position not in self.gnu_table:
-                raise ArchiveFormatError("file references a name not present in the index")
+                raise ArchiveFormatError(
+                    "file references a name not present in the index"
+                )
             header.name = self.gnu_table[gnu_position]
 
         elif header.type == HEADER_GNU_SYMBOLS:
@@ -290,7 +310,7 @@ class Archive(object):
         if num % 2 == 0:
             return num
         else:
-            return num+1
+            return num + 1
 
     @staticmethod
     def __get_bsd_filename_len(name):
@@ -317,6 +337,7 @@ class Archive(object):
                 raise StopIteration
             if header.type in (HEADER_BSD, HEADER_NORMAL, HEADER_GNU):
                 return self.archived_files[header.name]
+
     next = __next__
 
     def __iter__(self):

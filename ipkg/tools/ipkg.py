@@ -28,6 +28,7 @@ import arpy
 import os
 import tarfile
 
+
 class IPackageControl(object):
     """IPackage control data."""
 
@@ -50,14 +51,14 @@ class IPackageControl(object):
 
             if not l:
                 continue
-            
+
             field, val = l.split(": ", 1)
             if field == "Description":
                 desc = [val]
             else:
                 self._control[field] = val
-        
-        #self._control = dict(l.split(": ", 2) for l in string.split("\n")
+
+        # self._control = dict(l.split(": ", 2) for l in string.split("\n")
         #                     if l.strip())
 
     def __getattribute__(self, name):
@@ -70,8 +71,7 @@ class IPackageControl(object):
         if name == "Filename":
             if name in _control:
                 return _control[name]
-            return "%s_%s_%s.ipk" % (self.Package, self.Version,
-                                     self.Architecture)
+            return "%s_%s_%s.ipk" % (self.Package, self.Version, self.Architecture)
 
         # Get attribute from control dictionary
         if name not in _control:
@@ -106,8 +106,8 @@ class IPackage(object):
         if b"control.tar.gz" not in self.ar.archived_files:
             return None
         tf = tarfile.TarFile.open(
-                fileobj=self.ar.archived_files[b"control.tar.gz"],
-                mode="r:gz")
+            fileobj=self.ar.archived_files[b"control.tar.gz"], mode="r:gz"
+        )
         try:
             cf = tf.extractfile("control")
         except KeyError:
@@ -121,6 +121,7 @@ class IPackage(object):
         if hasattr(self, "_md5sum"):
             return self._md5sum
         from hashlib import md5
+
         self.file.seek(0)
         self._md5sum = md5(self.file.read()).hexdigest()
         return self._md5sum
@@ -142,8 +143,8 @@ class IPackage(object):
         if b"data.tar.gz" not in self.ar.archived_files:
             return []
         tf = tarfile.TarFile.open(
-                fileobj=self.ar.archived_files[b"data.tar.gz"],
-                mode="r:gz")
+            fileobj=self.ar.archived_files[b"data.tar.gz"], mode="r:gz"
+        )
         self._file_list = tf.getnames()
         return self._file_list
 
@@ -171,17 +172,29 @@ class IPackageList(object):
 
     def add_control(self, control):
         """Add a IPackageControl to the package list."""
-        self.packages[(control.Package, control.Version,
-                       control.Architecture)] = control
+        self.packages[
+            (control.Package, control.Version, control.Architecture)
+        ] = control
 
     def write_list(self, fileobj):
         """Write into file in Packages format."""
         for name, version, arch in sorted(self.packages):
             control = self.packages[(name, version, arch)]
-            for field in ["Package", "Version", "Section", "Architecture",
-                          "Maintainer", "MD5Sum", "Size", "Filename",
-                          "Description", "OE", "Homepage", "Depends",
-                          "Priority"]:
+            for field in [
+                "Package",
+                "Version",
+                "Section",
+                "Architecture",
+                "Maintainer",
+                "MD5Sum",
+                "Size",
+                "Filename",
+                "Description",
+                "OE",
+                "Homepage",
+                "Depends",
+                "Priority",
+            ]:
                 val = getattr(control, field, "unknown")
                 if field == "Depends" and val == "unknown":
                     continue
@@ -215,12 +228,14 @@ class IPackageFileList(object):
     def write_list(self, fileobj):
         """Write into file in Packages.filelist format."""
         for bn in sorted(self.files):
-            fileobj.write("%s %s\n" % (bn, ",".join("%s:%s:%s" % x
-                                                    for x in self.files[bn])))
+            fileobj.write(
+                "%s %s\n" % (bn, ",".join("%s:%s:%s" % x for x in self.files[bn]))
+            )
 
 
 if __name__ == "__main__":
     import sys
+
     x = IPackage(sys.argv[1])
     c = x.control
     c.MD5Sum = x.md5sum

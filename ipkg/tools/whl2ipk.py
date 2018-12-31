@@ -51,71 +51,74 @@ def chdir(p):
 
 
 class WheelConverter:
-    '''
+    """
         Not super flexible, nor does it currently validate that the wheel
         architecture actually matches.. but hey, it works for what I need
         it for. :)
-    '''
-    
-    def __init__(self, whl_path, pkgname,
-                       python_version, maintainer,
-                       arch, depends,
-                       prefix):
+    """
+
+    def __init__(
+        self, whl_path, pkgname, python_version, maintainer, arch, depends, prefix
+    ):
         self.whl = WheelFile(whl_path)
-        self.pyname = self.whl.parsed_filename.group('name')
+        self.pyname = self.whl.parsed_filename.group("name")
         self.pkgname = pkgname if pkgname else self.pyname
-        
-        self.py = 'python%s' % python_version
-        
+
+        self.py = "python%s" % python_version
+
         self.paths = {
-            'purelib': join(prefix, 'lib', self.py, 'site-packages'),
-            'platlib': join(prefix, 'lib', self.py, 'site-packages'),
-            'headers': join(prefix, 'include', self.py + 'm', self.pyname),
-            'scripts': join(prefix, 'bin'),
-            'data':    prefix,
+            "purelib": join(prefix, "lib", self.py, "site-packages"),
+            "platlib": join(prefix, "lib", self.py, "site-packages"),
+            "headers": join(prefix, "include", self.py + "m", self.pyname),
+            "scripts": join(prefix, "bin"),
+            "data": prefix,
         }
-        
-        self.executable = join(prefix, 'bin', self.py)
-        
+
+        self.executable = join(prefix, "bin", self.py)
+
         self.maintainer = maintainer
         self.arch = arch
         self.depends = depends
-    
+
     def create_control(self, output_fname):
-        '''
+        """
             Creates the control scripts
-        '''
-        
+        """
+
         # read the metadata
-        metadata_fname = '%s/metadata.json' % self.whl.distinfo_name
-        metadata = json.loads(self.whl.zipfile.read(metadata_fname).decode('utf-8'))
-        
+        metadata_fname = "%s/metadata.json" % self.whl.distinfo_name
+        metadata = json.loads(self.whl.zipfile.read(metadata_fname).decode("utf-8"))
+
         # Create the control file contents
         control = []
-        control.append('Package: %s' % self.pkgname)
-        control.append('Version: %s' % metadata['version'])
-        control.append('Description: %s' % metadata.get('summary', 'Unknown'))
-        control.append('Section: devel')
-        control.append('Priority: optional')
-        control.append('Maintainer: %s' % self.maintainer)
-        
-        if 'license' in metadata:
-            control.append('License: %s' % metadata['license'])
-            
-        control.append('Architecture: %s' % self.arch)
+        control.append("Package: %s" % self.pkgname)
+        control.append("Version: %s" % metadata["version"])
+        control.append("Description: %s" % metadata.get("summary", "Unknown"))
+        control.append("Section: devel")
+        control.append("Priority: optional")
+        control.append("Maintainer: %s" % self.maintainer)
+
+        if "license" in metadata:
+            control.append("License: %s" % metadata["license"])
+
+        control.append("Architecture: %s" % self.arch)
         if self.depends:
-            control.append('Depends: %s' % self.depends)
-        
+            control.append("Depends: %s" % self.depends)
+
         try:
-            homepage = metadata['extensions']['python.details']['project_urls']['Home']
-            control.append('Homepage: %s' % homepage)
+            homepage = metadata["extensions"]["python.details"]["project_urls"]["Home"]
+            control.append("Homepage: %s" % homepage)
         except KeyError:
             pass
-        
-        control.append('Source: https://pypi.python.org/pypi/%s/%s' % (self.pyname, metadata['version']))
-    
+
+        control.append(
+            "Source: https://pypi.python.org/pypi/%s/%s"
+            % (self.pyname, metadata["version"])
+        )
+
         # Create the post-install script to create all pyc files
-        postinst = inspect.cleandoc('''
+        postinst = inspect.cleandoc(
+            """
             #!%(scripts)s/%(py)s
 
             import compileall
@@ -126,116 +129,124 @@ class WheelConverter:
             with open(sp + '%(record)s') as fp:
               for row in csv.reader(fp):
                 compileall.compile_file(sp + row[0], quiet=1)
-        ''')
-        
+        """
+        )
+
         postinst %= {
-            'py': self.py,
-            'purelib': self.paths['purelib'],
-            'record': self.whl.record_name,
-            'scripts': self.paths['scripts'],
+            "py": self.py,
+            "purelib": self.paths["purelib"],
+            "record": self.whl.record_name,
+            "scripts": self.paths["scripts"],
         }
-        
+
         # Write the tarfile
-        with tarfile.open(output_fname, 'w|gz') as tfp:
-            
+        with tarfile.open(output_fname, "w|gz") as tfp:
+
             def _add(fname, contents, mode):
                 info = tarfile.TarInfo(fname)
                 info.size = len(contents)
                 info.mode = mode
                 info.gid = 0
                 info.uid = 0
-                tfp.addfile(info, BytesIO(contents.encode('utf-8')))
-          
-            _add('control',
-                 '\n'.join(control) + '\n',
-                 0o644)
-            
+                tfp.addfile(info, BytesIO(contents.encode("utf-8")))
+
+            _add("control", "\n".join(control) + "\n", 0o644)
+
             # Add a postinst script to compile the pyc files
-            _add('postinst',
-                 postinst,
-                 0o755)
+            _add("postinst", postinst, 0o755)
 
             # Use a prerm script to remove all pyc files
-            _add('prerm',
-                 '#!/bin/bash\n%(scripts)s/pip3 --disable-pip-version-check uninstall -y %(name)s\n' % {
-                     'name': metadata['name'],
-                     'scripts': self.paths['scripts'],
-                 },
-                 0o755)
-    
+            _add(
+                "prerm",
+                "#!/bin/bash\n%(scripts)s/pip3 --disable-pip-version-check uninstall -y %(name)s\n"
+                % {"name": metadata["name"], "scripts": self.paths["scripts"]},
+                0o755,
+            )
+
     def create_data(self, datadir, output_fname):
-        '''
+        """
             Extracts a wheel and tars it up
-        '''
-        
+        """
+
         # Tell wheel to do an 'install' to the output directory
         overrides = {k: datadir + v for k, v in self.paths.items()}
-        
+
         # Need to give it the location of the executable so that
         # scripts are written correctly
         tmp = sys.executable
         sys.executable = self.executable
-        
+
         try:
             self.whl.install(overrides=overrides)
         finally:
             sys.executable = tmp
-    
+
         output_fname = abspath(output_fname)
-    
+
         with chdir(datadir):
-            subprocess.check_call('tar -czvf "%s" --owner=0 --group=0 .' % output_fname, shell=True)
-    
+            subprocess.check_call(
+                'tar -czvf "%s" --owner=0 --group=0 .' % output_fname, shell=True
+            )
+
     def create_ipk(self, output_file):
-        '''Does all the necessary steps'''
-        
+        """Does all the necessary steps"""
+
         tmpdir = tempfile.mkdtemp()
-        
+
         try:
-            self.create_control(join(tmpdir, 'control.tar.gz'))
-            self.create_data(join(tmpdir, 'data'), join(tmpdir, 'data.tar.gz'))
-            
-            with open(join(tmpdir, 'debian-binary'), 'w') as fp:
-                fp.write('2.0')
-            
+            self.create_control(join(tmpdir, "control.tar.gz"))
+            self.create_data(join(tmpdir, "data"), join(tmpdir, "data.tar.gz"))
+
+            with open(join(tmpdir, "debian-binary"), "w") as fp:
+                fp.write("2.0")
+
             with chdir(tmpdir):
-                subprocess.check_call('ar r ipk control.tar.gz data.tar.gz debian-binary', shell=True)
-            
-            shutil.move(join(tmpdir, 'ipk'), output_file)
-            print(output_file, 'created')
-            
+                subprocess.check_call(
+                    "ar r ipk control.tar.gz data.tar.gz debian-binary", shell=True
+                )
+
+            shutil.move(join(tmpdir, "ipk"), output_file)
+            print(output_file, "created")
+
         finally:
             shutil.rmtree(tmpdir)
-    
+
+
 def _check_version(v):
-    if not re.match(r'\d\.\d', v):
+    if not re.match(r"\d\.\d", v):
         raise argparse.ArgumentTypeError("Version must be in form 'x.y'")
     return v
-        
+
 
 def main():
-    
+
     # Arguments are meant to be passed by a common script
     # Config file is per-wheel configuration
-    
+
     p = argparse.ArgumentParser()
-    p.add_argument('whl_path')
-    p.add_argument('output_ipk')
-    p.add_argument('--py', type=_check_version, required=True)    
-    p.add_argument('--maintainer', required=True)
-    p.add_argument('--arch', required=True)
-    p.add_argument('--prefix', default='/usr/local')
-    p.add_argument('--depends', action='append', default=[])
-    p.add_argument('--pkgname')
-    
+    p.add_argument("whl_path")
+    p.add_argument("output_ipk")
+    p.add_argument("--py", type=_check_version, required=True)
+    p.add_argument("--maintainer", required=True)
+    p.add_argument("--arch", required=True)
+    p.add_argument("--prefix", default="/usr/local")
+    p.add_argument("--depends", action="append", default=[])
+    p.add_argument("--pkgname")
+
     args = p.parse_args()
-    
-    w = WheelConverter(args.whl_path, args.pkgname,
-                       args.py, args.maintainer,
-                       args.arch, ', '.join(args.depends),
-                       args.prefix)
-    
+
+    w = WheelConverter(
+        args.whl_path,
+        args.pkgname,
+        args.py,
+        args.maintainer,
+        args.arch,
+        ", ".join(args.depends),
+        args.prefix,
+    )
+
     w.create_ipk(args.output_ipk)
-    
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     main()

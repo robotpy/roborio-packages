@@ -7,38 +7,42 @@ import shutil
 import click
 
 ROOT = dirname(__file__)
-DEVROOT = join(ROOT, '2019-dev')
-PRODROOT = join(ROOT, '2019')
+DEVROOT = join(ROOT, "2019-dev")
+PRODROOT = join(ROOT, "2019")
+
 
 def _plist():
     idx = -1
-    for fn in sorted(glob.glob(join(DEVROOT, '*.ipk'))):
+    for fn in sorted(glob.glob(join(DEVROOT, "*.ipk"))):
         idx += 1
         fn = basename(fn)
-        name, version, arch = fn.split('_')
+        name, version, arch = fn.split("_")
 
         yield name, version
 
         if exists(join(PRODROOT, fn)):
-            print(idx, 'OK:', name, version)
+            print(idx, "OK:", name, version)
         else:
             print(idx, "--:", name, version)
+
 
 @click.group()
 def cli():
     pass
 
-@cli.command(name='list')
+
+@cli.command(name="list")
 def _list():
     list(_plist())
+
 
 @cli.command()
 def plist():
     while True:
-        print('---')
+        print("---")
         l = list(_plist())
-        print('---')
-        idx = input('Which? ')
+        print("---")
+        idx = input("Which? ")
         try:
             idx = int(idx)
         except ValueError:
@@ -48,14 +52,15 @@ def plist():
 
 
 @cli.command()
-@click.argument('package')
-@click.argument('version')
-@click.option('-f', '--force', default=False)
+@click.argument("package")
+@click.argument("version")
+@click.option("-f", "--force", default=False)
 def promote(package, version, force):
     _promote(package, version, force)
 
+
 def _promote(package, version, force=False):
-    fname = '%s_%s_cortexa9-vfpv3.ipk' % (package, version)
+    fname = "%s_%s_cortexa9-vfpv3.ipk" % (package, version)
     srcpath = join(DEVROOT, fname)
     dstpath = join(PRODROOT, fname)
 
@@ -64,9 +69,9 @@ def _promote(package, version, force=False):
 
     # TODO: check dependencies?
 
-    print(srcpath, ' -> ', dstpath)
+    print(srcpath, " -> ", dstpath)
     shutil.copyfile(srcpath, dstpath)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()
