@@ -33,7 +33,9 @@ init-robotpy-opkg:
 	ssh ${BUILD_USER}@${ROBORIO} 'echo "src/gz robotpy http://www.tortall.net/~robotpy/feeds/2019-dev" > /etc/opkg/robotpy.conf'
 
 sync-date:
+ifneq (${NOSETDATE}, 1)
 	ssh ${BUILD_USER}@${ROBORIO} "date -s '`date -u +'%Y-%m-%d %H:%m:%S'`'"
+endif
 
 install-deps:
 ifneq ($(strip ${DEPS}),)
