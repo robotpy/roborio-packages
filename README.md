@@ -13,6 +13,10 @@ containing the following line:
 
     src/gz robotpy https://www.tortall.net/~robotpy/feeds/2019
 
+Here's a command you can copy/paste that does this:
+
+    echo "src/gz robotpy https://www.tortall.net/~robotpy/feeds/2019" > /etc/opkg/robotpy.conf
+
 Then run `opkg update`. After you setup the opkg feed, you can run:
 
     opkg install PACKAGENAME
