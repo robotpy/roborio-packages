@@ -1,7 +1,9 @@
 #!/bin/bash
 #
-# Starts a webserver that serves the -dev directory for
-# testing purposes
+# Starts a webserver that serves the -dev directory (which is where packages
+# are written by default)
+#
+# To make your builds use this, see vars.template
 #
 
 cd $(dirname $0)

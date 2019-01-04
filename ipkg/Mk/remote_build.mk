@@ -3,6 +3,7 @@
 # ROBORIO - the RoboRIO DNS name / IP address (expected to be set by user)
 # BUILD_USER - the RoboRIO login to use (defaults to admin)
 # BUILD_HOME - where build packages should be extracted (defaults to home)
+# OPKG_SITE - where the RoboRIO should retrieve robotpy dependencies from
 #
 # TGZ - the tar.gz source code file; defaults to last part of SOURCE
 # EXTRA_CLEAN - extra files to be cleaned in clean
@@ -19,6 +20,7 @@
 TGZ ?= $(lastword $(subst /, ,${SOURCE}))
 BUILD_DIR ?= $(subst .tgz,,$(subst .tar.gz,,${TGZ}))
 BUILD_USER ?= admin
+OPKG_SITE ?= https://www.tortall.net/~robotpy/feeds/${RELEASE}
 STACK_SIZE ?= 4096
 
 
@@ -35,7 +37,7 @@ init-ssh:
 	ssh ${BUILD_USER}@${ROBORIO} 'mkdir -p .ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 
 init-robotpy-opkg:
-	ssh ${BUILD_USER}@${ROBORIO} 'echo "src/gz robotpy http://www.tortall.net/~robotpy/feeds/2019-dev" > /etc/opkg/robotpy.conf'
+	ssh ${BUILD_USER}@${ROBORIO} 'echo "src/gz robotpy ${OPKG_SITE}" > /etc/opkg/robotpy.conf'
 
 sync-date:
 ifneq (${NOSETDATE}, 1)

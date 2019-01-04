@@ -1,0 +1,12 @@
+#
+# If you copy this file to 'vars', these variables will be set for all builds
+#
+# This is useful for setting variables like ROBORIO and BUILD_USER
+#
+
+ROBORIO=roborio
+BUILD_USER=admin
+
+# Example if you wanted to build against local opkg repo served
+# by serve.sh
+# OPKG_SITE=https://192.168.0.1:1234
