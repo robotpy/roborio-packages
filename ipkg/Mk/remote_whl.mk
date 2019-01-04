@@ -9,14 +9,17 @@
 # PYDEPS - Python build dependencies (download from pypi)
 #
 
-# Keep synced with pkgdata.mk
-mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
-BUILD_ROOT = $(abspath ${mkfile_path}/../..)
+ifndef PYPI_PACKAGE_NAME
+$(error error in makefile, PYPI_PACKAGE_NAME not set)
+endif
 
-ARCH=cortexa9-vfpv3
+ifndef PYPI_PACKAGE_VERSION
+$(error error in makefile, PYPI_PACKAGE_VERSION not set)
+endif
+
+
 PYVERSION=3.7
 PYNAME=python37
-RELEASE=2019-dev
 
 PURE_PYTHON ?= false
 
@@ -26,11 +29,16 @@ else
 	WHL_PLATFORM ?= cp37-cp37m-linux_armv7l
 endif
 
-IPK_DEST ?= ${BUILD_ROOT}/${RELEASE}
+PACKAGE ?= ${PYNAME}-${PYPI_PACKAGE_NAME}
+VERSION ?= ${PYPI_PACKAGE_VERSION}
+
+# Sets IPK_DEST, IPK_NAME
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+BUILD_ROOT = $(abspath ${mkfile_path}/../..)
+include ${BUILD_ROOT}/Mk/globals.mk
+
 WHL_DEST ?= ${BUILD_ROOT}/${RELEASE}
 WHL_NAME ?= $(subst -,_,${PYPI_PACKAGE_NAME})-${PYPI_PACKAGE_VERSION}-${WHL_PLATFORM}.whl
-IPK_PKGNAME ?= ${PYNAME}-${PYPI_PACKAGE_NAME}
-IPK_NAME ?= ${IPK_DEST}/${IPK_PKGNAME}_${PYPI_PACKAGE_VERSION}_${ARCH}.ipk
 
 ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps mkwheelhouse build whl whl2ipk
 
@@ -60,7 +68,7 @@ ${IPK_NAME}: ${WHL_NAME}
 	${BUILD_ROOT}/tools/whl2ipk.py ${WHL_NAME} ${IPK_NAME} \
 		--py ${PYVERSION} --depends ${PYNAME} ${deps} \
 		--maintainer 'RobotPy Developers <robotpy@googlegroups.com>' \
-		--arch ${ARCH} --pkgname=${IPK_PKGNAME}
+		--arch ${ARCH} --pkgname=${PACKAGE}
 
 whl: ${WHL_NAME}
 	
