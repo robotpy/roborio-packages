@@ -21,6 +21,11 @@ BUILD_DIR ?= $(subst .tgz,,$(subst .tar.gz,,${TGZ}))
 BUILD_USER ?= admin
 STACK_SIZE ?= 4096
 
+
+ifndef ROBORIO
+$(error ROBORIO is not set, see vars.template)
+endif
+
 .PHONY: all init-ssh init-robotpy-opkg sync-date install-deps fetch extract build install fetch-src getdata
 
 ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps fetch extract build install getdata ipk
