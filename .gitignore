@@ -5,8 +5,7 @@
 /ipkg/**/*.tgz
 /ipkg/**/*.tar.bz2
 /ipkg/**/data*
-/ipkg/Packages*
-/ipkg/index.html
+/ipkg/vars
 
-/ipkg/tools/*.pyc
-/ipkg/tools/__pycache__
+*.pyc
+__pycache__
