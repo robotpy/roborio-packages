@@ -1,5 +1,5 @@
-Package: python36-opencv3
-Version: 3.4.0-r0
+Package: python37-opencv3
+Version: 3.4.5-r0
 Description: Open Source Computer Vision Library (Python 3.6 bindings)
 Section: devel
 Priority: optional
@@ -7,5 +7,5 @@ Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: cortexa9-vfpv3
 Homepage: http://opencv.org/
-Depends: opencv3 (= 3.4.0-r0), python36-numpy (>= 1.13.1)
-Source: https://github.com/Itseez/opencv/archive/3.3.1.tar.gz
+Depends: opencv3 (= 3.4.5-r0), python37-numpy (>= 1.15.4)
+Source: https://github.com/opencv/opencv/archive/3.4.5.tar.gz
