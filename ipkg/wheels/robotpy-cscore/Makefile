@@ -1,9 +1,9 @@
 
-BUILD_DEPS = python36-numpy opencv3-dev
-RUNTIME_DEPS = python36-numpy, python36-opencv3 (>= 3.4)
+BUILD_DEPS = python37-numpy opencv3-dev
+RUNTIME_DEPS = python37-numpy, python37-opencv3 (>= 3.4)
 PYDEPS = pybind11
 
 PYPI_PACKAGE_NAME = robotpy-cscore
-PYPI_PACKAGE_VERSION = 2018.0.6
+PYPI_PACKAGE_VERSION = 2019.0.0
 
 include ../../Mk/remote_whl.mk

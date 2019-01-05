@@ -7,5 +7,5 @@ Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: cortexa9-vfpv3
 Homepage: http://opencv.org/
-Depends: opencv3 (= 3.5.0-r0)
+Depends: opencv3 (= 3.4.5-r0)
 Source: https://github.com/opencv/opencv/archive/3.4.5.tar.gz
