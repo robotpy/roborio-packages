@@ -43,7 +43,7 @@ WHL_NAME ?= $(subst -,_,${PYPI_PACKAGE_NAME})-${PYPI_PACKAGE_VERSION}-${WHL_PLAT
 ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps mkwheelhouse build whl whl2ipk
 
 BUILD_DIR ?= wheelhouse
-BUILD_CMD ?= /usr/local/bin/pip3 --disable-pip-version-check install wheel ${PYDEPS} && /usr/local/bin/pip3 -v --disable-pip-version-check wheel --no-build-isolation --no-deps -b . ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
+BUILD_CMD ?= /usr/local/bin/pip3 --disable-pip-version-check install wheel ${PYDEPS} && /usr/local/bin/pip3 -v --disable-pip-version-check wheel --no-build-isolation --no-deps --no-binary :all: -b . ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
 
 DEPS ?= binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev libstdc++-dev make ${PYNAME}-dev ${BUILD_DEPS}
 
