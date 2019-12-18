@@ -22,6 +22,7 @@ PYVERSION=3.7
 PYNAME=python37
 
 PURE_PYTHON ?= false
+DOWNLOAD_WHL ?= false
 
 ifeq ($(PURE_PYTHON), true)
 	WHL_PLATFORM ?= py2.py3-none-any
@@ -40,7 +41,13 @@ include ${BUILD_ROOT}/Mk/globals.mk
 WHL_DEST ?= ${BUILD_ROOT}/${RELEASE}
 WHL_NAME ?= $(subst -,_,${PYPI_PACKAGE_NAME})-${PYPI_PACKAGE_VERSION}-${WHL_PLATFORM}.whl
 
-ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps mkwheelhouse build whl whl2ipk
+
+ifeq ($(DOWNLOAD_WHL), true)
+	ALLTARGETS ?= clean whl whl2ipk
+else
+	ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps mkwheelhouse build whl whl2ipk
+endif
+
 
 BUILD_DIR ?= wheelhouse
 BUILD_CMD ?= /usr/local/bin/pip3 --disable-pip-version-check install wheel ${PYDEPS} && /usr/local/bin/pip3 -v --disable-pip-version-check wheel --no-build-isolation --no-deps --no-binary :all: -b . ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
@@ -57,8 +64,13 @@ clean:
 mkwheelhouse:
 	ssh ${BUILD_USER}@${ROBORIO} 'cd ${BUILD_HOME} && mkdir -p ${BUILD_DIR}'
 
+ifeq ($(DOWNLOAD_WHL), true)
+${WHL_NAME}:
+	pip3 --disable-pip-version-check download --no-deps --only-binary :all: ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
+else
 ${WHL_NAME}:
 	scp ${BUILD_USER}@${ROBORIO}:${BUILD_HOME}${BUILD_DIR}/${WHL_NAME} "${WHL_NAME}"
+endif
 
 ifdef RUNTIME_DEPS
 deps = --depends "${RUNTIME_DEPS}"
