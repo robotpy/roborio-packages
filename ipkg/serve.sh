@@ -7,4 +7,4 @@
 #
 
 cd $(dirname $0)
-exec python3 -m http.server -d 2019-dev 1234
+exec python3 -m http.server -d 2020-dev 1234

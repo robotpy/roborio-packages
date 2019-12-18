@@ -1,6 +1,6 @@
 .PHONY: clean upload
 	
-YEAR=2019
+YEAR=2020
 DEVYEAR=${YEAR}-dev
 
 clean:

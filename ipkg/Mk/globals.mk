@@ -6,7 +6,7 @@ ifneq ("$(wildcard $(BUILD_ROOT)/vars)","")
 include ${BUILD_ROOT}/vars
 endif
 
-RELEASE = 2019-dev
+RELEASE = 2020-dev
 ARCH ?= cortexa9-vfpv3
 
 ifndef PACKAGE
