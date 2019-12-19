@@ -6,33 +6,33 @@ BUILD_CMD = CXX=/usr/bin/g++ ./configure --enable-shared --with-system-expat --w
 
 INSTALL_CMD = make install
 
-GETDATA_TARARGS = --exclude=usr/local/lib/python3.7/site-packages/numpy\* \
-		  --exclude=usr/local/lib/python3.7/test \
-		  --exclude=usr/local/lib/python3.7/config-3.7m-arm-linux-gnueabi/libpython3.7m.a \
-		  --exclude=usr/local/lib/python3.7/lib-dynload/.debug \
+GETDATA_TARARGS = --exclude=usr/local/lib/python3.8/site-packages/numpy\* \
+		  --exclude=usr/local/lib/python3.8/test \
+		  --exclude=usr/local/lib/python3.8/config-3.8m-arm-linux-gnueabi/libpython3.8m.a \
+		  --exclude=usr/local/lib/python3.8/lib-dynload/.debug \
 		  --exclude=\*.py[co] \
 		  --exclude=__pycache__ \
-		  usr/local/include/python3.7m/pyconfig.h \
+		  usr/local/include/python3.8m/pyconfig.h \
 		  usr/local/lib/libpython3* \
-		  usr/local/bin/*3.7 \
+		  usr/local/bin/*3.8 \
 		  usr/local/bin/2to3 \
 		  usr/local/bin/idle3 \
 		  usr/local/bin/pip3 \
 		  usr/local/bin/pydoc3 \
 		  usr/local/bin/python3 \
 		  usr/local/bin/python3-config \
-		  usr/local/lib/python3.7 \
-		  usr/local/bin/python3.7-config \
-		  usr/local/bin/python3.7m \
-		  usr/local/bin/python3.7m-config \
+		  usr/local/lib/python3.8 \
+		  usr/local/bin/python3.8-config \
+		  usr/local/bin/python3.8m \
+		  usr/local/bin/python3.8m-config \
 		  usr/local/bin/pyvenv \
-		  usr/local/bin/pyvenv-3.7
+		  usr/local/bin/pyvenv-3.8
 
 EXTRA_CONTROL = postinst prerm
 
-EXES = usr/local/bin/python3.7m \
-       usr/local/lib/libpython3.7m.so.1.0 \
-       usr/local/lib/python3.7/lib-dynload/*.so
+EXES = usr/local/bin/python3.8m \
+       usr/local/lib/libpython3.8m.so.1.0 \
+       usr/local/lib/python3.8/lib-dynload/*.so
 
 include ../../Mk/remote_build.mk
 include ../../Mk/ipk.mk

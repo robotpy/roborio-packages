@@ -18,8 +18,8 @@ $(error error in makefile, PYPI_PACKAGE_VERSION not set)
 endif
 
 
-PYVERSION=3.7
-PYNAME=python37
+PYVERSION=3.8
+PYNAME=python38
 
 PURE_PYTHON ?= false
 DOWNLOAD_WHL ?= false
