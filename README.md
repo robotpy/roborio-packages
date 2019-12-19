@@ -8,6 +8,12 @@ list of published packages can be found at that URL.
 Installing a package (online)
 -----------------------------
 
+**NEW FOR 2020**: You must import the RobotPy package signing key 
+(fingerprint `46C8 9FEB 8973 8008 16F2  FA66 18C4 E7B9 5FBE B547`). You can
+use the following command to install it:
+
+    curl https://www.tortall.net/~robotpy/feeds/robotpy.gpg | opkg-key add -
+
 Create a `.conf` file in `/etc/opkg` (e.g. `/etc/opkg/robotpy.conf`)
 containing the following line:
 

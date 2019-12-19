@@ -7,6 +7,9 @@
 ROBORIO=roborio
 BUILD_USER=admin
 
-# Example if you wanted to build against local opkg repo served
-# by serve.sh
+# Example if you wanted to build against local opkg repo served by serve.sh
+# you would need your local IP, a public key, and the appropriate gpg
+# fingerprint for a GPG key in your local GPG keyring.
 # OPKG_SITE=https://192.168.0.1:1234
+# OPKG_PUBLIC_KEY=my.gpg
+# GPG_FINGERPRINT=ABCDEF

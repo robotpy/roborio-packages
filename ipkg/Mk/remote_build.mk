@@ -21,6 +21,7 @@ TGZ ?= $(lastword $(subst /, ,${SOURCE}))
 BUILD_DIR ?= $(subst .tgz,,$(subst .tar.gz,,${TGZ}))
 BUILD_USER ?= admin
 OPKG_SITE ?= https://www.tortall.net/~robotpy/feeds/${RELEASE}
+OPKG_PUBLIC_KEY ?= robotpy.gpg
 STACK_SIZE ?= 4096
 
 
@@ -37,6 +38,7 @@ init-ssh:
 	ssh ${BUILD_USER}@${ROBORIO} 'mkdir -p .ssh && cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_rsa.pub
 
 init-robotpy-opkg:
+	ssh ${BUILD_USER}@${ROBORIO} 'opkg-key add -' < $(BUILD_ROOT)/${OPKG_PUBLIC_KEY}
 	ssh ${BUILD_USER}@${ROBORIO} 'echo "src/gz robotpy ${OPKG_SITE}" > /etc/opkg/robotpy.conf'
 
 sync-date:
