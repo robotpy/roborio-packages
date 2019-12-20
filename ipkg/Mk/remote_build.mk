@@ -29,9 +29,9 @@ ifndef ROBORIO
 $(error ROBORIO is not set, see vars.template)
 endif
 
-.PHONY: all init-ssh init-robotpy-opkg sync-date install-deps fetch extract build install fetch-src getdata
+.PHONY: all init-ssh init-robotpy-opkg sync-date install-deps fetch extract build install strip-exes fetch-src getdata
 
-ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps fetch extract build install getdata ipk
+ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps fetch extract build install strip-exes getdata ipk
 all: ${ALLTARGETS}
 
 init-ssh:
@@ -74,6 +74,8 @@ endif
 
 install:
 	ssh ${BUILD_USER}@${ROBORIO} 'ulimit -s ${STACK_SIZE} && cd ${BUILD_HOME} && cd ${BUILD_DIR}/${BUILD_DIR_EXTRA} && ${INSTALL_CMD}'
+
+strip-exes:
 ifneq ($(strip ${EXES}),)
 	ssh ${BUILD_USER}@${ROBORIO} 'for exes in ${EXES}; do for exe in /$$exes; do \
 		fdir=$$(dirname $$exe) && fbase=$$(basename "$$exe") && \
