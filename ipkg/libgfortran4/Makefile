@@ -1,9 +1,11 @@
 include ../Mk/pkgdata.mk
 
-BINRELEASE = https://github.com/robotpy/roborio-atlas/releases/download/3.10.3-r2019.0/libgfortran-6.3.0-r0_cortexa9-vfpv3.tar.bz2
+BINRELEASE = https://www.tortall.net/~robotpy/fortran/libgfortran4-7.3.0-r0_cortexa9-vfpv3.tar.bz2
 LIBGZIP = $(abspath $(notdir ${BINRELEASE}))
 
-.PHONY: all clean getdata
+.PHONY: all getdata
+
+all: package
 
 ${LIBGZIP}:
 	wget ${BINRELEASE}
@@ -16,6 +18,4 @@ getdata: ${LIBGZIP}
 
 include ${BUILD_ROOT}/Mk/ipk.mk
 
-all:
-	$(MAKE) package
 
