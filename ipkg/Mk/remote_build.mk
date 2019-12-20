@@ -93,6 +93,6 @@ getdata:
 	mkdir -p data
 	rm -rf data.new
 	mkdir data.new
-	cd data.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_TARARGS}' | tar xf -
+	set -o pipefail; cd data.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_TARARGS}' | tar xf -
 	rm -rf data.old && mv data data.old && mv data.new data
 	[ ! -d extra ] || cp -r extra/* data/
