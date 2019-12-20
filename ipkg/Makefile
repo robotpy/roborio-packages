@@ -18,13 +18,13 @@ ${YEAR}/Packages.gz ${YEAR}/index.html: ${YEAR}/*.ipk
 	cd ${YEAR}; ../tools/make_package_index.py '${YEAR} RoboRIO packages'
 
 ${YEAR}/Packages.asc: ${YEAR}/Packages.gz
-	cd ${YEAR}; gpg --armor --detach-sign -u ${GPG_FINGERPRINT} Packages
+	cd ${YEAR}; gpg --batch --yes --armor --detach-sign -u ${GPG_FINGERPRINT} Packages
 
 ${DEVYEAR}/Packages.gz: ${DEVYEAR}/*.ipk
 	cd ${DEVYEAR}; ../tools/make_package_index.py '${YEAR} RoboRIO packages (preview)'
 
 ${DEVYEAR}/Packages.asc: ${DEVYEAR}/Packages.gz
-	cd ${DEVYEAR}; gpg --armor --detach-sign -u ${GPG_FINGERPRINT} Packages
+	cd ${DEVYEAR}; gpg --batch --yes --armor --detach-sign -u ${GPG_FINGERPRINT} Packages
 
 .PHONY: ${DEVYEAR}
 ${DEVYEAR}: ${DEVYEAR}/Packages.gz ${DEVYEAR}/Packages.asc
