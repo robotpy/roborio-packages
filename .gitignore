@@ -5,6 +5,10 @@
 /ipkg/**/*.tgz
 /ipkg/**/*.tar.bz2
 /ipkg/**/data*
+/ipkg/**/dbgdata
+/ipkg/**/dbgtmp
+/ipkg/**/devdata
+/ipkg/**/devtmp
 /ipkg/vars
 
 *.pyc

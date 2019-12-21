@@ -15,6 +15,8 @@
 # BUILD_CMD - the build command
 # INSTALL_CMD - the install command
 # GETDATA_TARARGS - the args to use for tar when getting data
+# GETDATA_DEV_TARARGS - if specified args to use for tar when getting development data
+# GETDATA_DBG_TARARGS - if specified args to use for tar when getting debug data
 # EXTRA_CONTROL - extra files to include in control.tar.gz
 #
 TGZ ?= $(lastword $(subst /, ,${SOURCE}))
@@ -29,9 +31,20 @@ ifndef ROBORIO
 $(error ROBORIO is not set, see vars.template)
 endif
 
-.PHONY: all init-ssh init-robotpy-opkg sync-date install-deps fetch extract build install strip-exes fetch-src getdata
+.PHONY: all init-ssh init-robotpy-opkg sync-date install-deps fetch extract build install strip-exes fetch-src getdata getdata-pkg getdata-dev getdata-dbg
 
-ALLTARGETS ?= clean init-robotpy-opkg sync-date install-deps fetch extract build install strip-exes getdata ipk
+ifdef GETDATA_DEV_TARARGS
+GETDATA_DEV_TARGET=getdata-dev
+endif
+
+ifdef GETDATA_DBG_TARARGS
+GETDATA_DBG_TARGET=getdata-dbg
+endif
+
+ALLTARGETS ?= clean \
+	init-robotpy-opkg sync-date install-deps \
+	fetch extract build install strip-exes \
+	getdata ipk
 all: ${ALLTARGETS}
 
 init-ssh:
@@ -89,10 +102,32 @@ ifneq ($(strip ${EXES}),)
 		done; done'
 endif
 
-getdata:
+getdata: getdata-pkg ${GETDATA_DEV_TARGET} ${GETDATA_DBG_TARGET}
+
+getdata-pkg:
 	mkdir -p data
 	rm -rf data.new
 	mkdir data.new
 	set -o pipefail; cd data.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_TARARGS}' | tar xf -
 	rm -rf data.old && mv data data.old && mv data.new data
 	[ ! -d extra ] || cp -r extra/* data/
+
+ifdef GETDATA_DEV_TARARGS
+getdata-dev:
+	mkdir -p devdata
+	rm -rf devdata.new
+	mkdir devdata.new
+	set -o pipefail; cd devdata.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_DEV_TARARGS}' | tar xf -
+	rm -rf devdata.old && mv devdata devdata.old && mv devdata.new devdata
+	[ ! -d extradev ] || cp -r extradev/* devdata/
+endif
+
+ifdef GETDATA_DBG_TARARGS
+getdata-dbg:
+	mkdir -p dbgdata
+	rm -rf dbgdata.new
+	mkdir dbgdata.new
+	set -o pipefail; cd dbgdata.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_DBG_TARARGS}' | tar xf -
+	rm -rf dbgdata.old && mv dbgdata dbgdata.old && mv dbgdata.new dbgdata
+	[ ! -d extradev ] || cp -r extradev/* dbgdata/
+endif
