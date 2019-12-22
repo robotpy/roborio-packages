@@ -1,8 +1,8 @@
 
-BUILD_DEPS = ATLAS-dev gfortran gfortran-symlinks
-RUNTIME_DEPS = ATLAS (>= 3.10.3), libgfortran3
+BUILD_DEPS = openblas-dev gfortran gfortran-symlinks
+RUNTIME_DEPS = openblas, libgfortran4
 
 PYPI_PACKAGE_NAME = numpy
-PYPI_PACKAGE_VERSION = 1.15.4
+PYPI_PACKAGE_VERSION = 1.17.4
 
 include ../../Mk/remote_whl.mk
