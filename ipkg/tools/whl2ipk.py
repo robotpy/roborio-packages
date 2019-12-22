@@ -69,7 +69,7 @@ class WheelConverter:
         self.paths = {
             "purelib": join(prefix, "lib", self.py, "site-packages"),
             "platlib": join(prefix, "lib", self.py, "site-packages"),
-            "headers": join(prefix, "include", self.py + "m", self.pyname),
+            "headers": join(prefix, "include", self.py, self.pyname),
             "scripts": join(prefix, "bin"),
             "data": prefix,
         }

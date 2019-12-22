@@ -27,7 +27,7 @@ DOWNLOAD_WHL ?= false
 ifeq ($(PURE_PYTHON), true)
 	WHL_PLATFORM ?= py2.py3-none-any
 else
-	WHL_PLATFORM ?= cp37-cp37m-linux_armv7l
+	WHL_PLATFORM ?= cp38-cp38-linux_armv7l
 endif
 
 PACKAGE ?= ${PYNAME}-${PYPI_PACKAGE_NAME}
