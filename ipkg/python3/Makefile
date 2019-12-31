@@ -1,4 +1,4 @@
-include ../../Mk/pkgdata.mk
+include ../Mk/pkgdata.mk
 
 DEPS = binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev gcov make libreadline-dev openssl-dev libz-dev libsqlite3-dev libexpat-dev libxml2-dev libbz2-dev liblzma-dev libgdbm-dev libffi-dev pkgconfig
 
@@ -42,5 +42,5 @@ EXES = usr/local/bin/python3.8 \
        usr/local/lib/libpython3.8.so.1.0 \
        usr/local/lib/python3.8/lib-dynload/*.so
 
-include ../../Mk/remote_build.mk
-include ../../Mk/ipk.mk
+include ../Mk/remote_build.mk
+include ../Mk/ipk.mk
