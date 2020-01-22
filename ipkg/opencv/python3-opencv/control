@@ -1,0 +1,11 @@
+Package: python38-opencv4
+Version: 4.2.0-r0
+Description: Open Source Computer Vision Library (Python 3.6 bindings)
+Section: devel
+Priority: optional
+Maintainer: RobotPy Developers <robotpy@googlegroups.com>
+License: BSD
+Architecture: cortexa9-vfpv3
+Homepage: http://opencv.org/
+Depends: opencv3 (= 4.2.0-r0), python38-numpy (>= 1.18.0)
+Source: https://github.com/opencv/opencv/archive/4.2.0.tar.gz

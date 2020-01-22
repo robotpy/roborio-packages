@@ -1,0 +1,11 @@
+Package: opencv4
+Version: 4.2.0-r0
+Description: Open Source Computer Vision Library
+Section: devel
+Priority: optional
+Maintainer: RobotPy Developers <robotpy@googlegroups.com>
+License: BSD
+Architecture: cortexa9-vfpv3
+Homepage: http://opencv.org/
+Depends: libc6, libstdc++6
+Source: https://github.com/Itseez/opencv/archive/4.2.0.tar.gz
