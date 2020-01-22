@@ -5,7 +5,7 @@
 # PYPI_PACKAGE_VERSION - package version on pypi
 #
 # BUILD_DEPS - IPKs that must be installed to build this
-# RUNTIME_DEPS - IPKs that must be installed for this to work
+# RUNTIME_DEPS - IPKs that must be installed for this to work (comma separated)
 # PYDEPS - Python build dependencies (download from pypi)
 #
 
@@ -25,7 +25,7 @@ PURE_PYTHON ?= false
 DOWNLOAD_WHL ?= false
 
 ifeq ($(PURE_PYTHON), true)
-	WHL_PLATFORM ?= py2.py3-none-any
+	WHL_PLATFORM ?= py3-none-any
 else
 	WHL_PLATFORM ?= cp38-cp38-linux_armv7l
 endif
@@ -50,7 +50,7 @@ endif
 
 
 BUILD_DIR ?= wheelhouse
-BUILD_CMD ?= /usr/local/bin/pip3 --disable-pip-version-check install wheel ${PYDEPS} && /usr/local/bin/pip3 -v --disable-pip-version-check wheel --no-build-isolation --no-deps --no-binary :all: -b . ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
+BUILD_CMD ?= /usr/local/bin/pip3 --disable-pip-version-check install wheel ${PYDEPS} && RPYBUILD_PARALLEL=1 /usr/local/bin/pip3 -v --disable-pip-version-check wheel --no-build-isolation --no-deps --no-binary :all: -b . ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
 
 DEPS ?= binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev libstdc++-dev make ${PYNAME}-dev ${BUILD_DEPS}
 
