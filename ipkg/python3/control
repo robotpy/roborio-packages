@@ -1,5 +1,5 @@
-Package: python38
-Version: 3.8.1-r0
+Package: python39
+Version: 3.9.0-r0
 Description: Python programming language
 Section: devel
 Priority: optional
@@ -10,4 +10,4 @@ OE: python38
 Homepage: http://www.python.org
 Depends: libc6
 Recommends: libreadline6
-Source: https://www.python.org/ftp/python/3.8.1/Python-3.8.1.tgz
+Source: https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tgz

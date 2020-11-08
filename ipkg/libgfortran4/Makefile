@@ -12,10 +12,10 @@ ${LIBGZIP}:
 
 getdata: ${LIBGZIP}
 	rm -rf data
-	mkdir -p data/usr/lib
-	tar -xf ${LIBGZIP} -C data/usr/lib \
-		'*'
+	mkdir -p data/usr/local/lib
+	${BUILD_ROOT}/tools/xtar -xf ${LIBGZIP} -C data/usr/local/lib \
+		'libgfortran.so.4'
 
-include ${BUILD_ROOT}/Mk/ipk.mk
+include ${BUILD_ROOT}/Mk/ipkwhl.mk
 
 

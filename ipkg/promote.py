@@ -7,11 +7,11 @@ import shutil
 import click
 
 ROOT = dirname(__file__)
-DEVROOT = join(ROOT, "2020-dev")
-PRODROOT = join(ROOT, "2020")
+DEVROOT = join(ROOT, "2021-dev")
+PRODROOT = join(ROOT, "2021")
 
 
-def _plist():
+def _plist(quiet=False):
     idx = -1
     for fn in sorted(glob.glob(join(DEVROOT, "*.ipk"))):
         idx += 1
@@ -21,7 +21,8 @@ def _plist():
         yield name, version
 
         if exists(join(PRODROOT, fn)):
-            print(idx, "OK:", name, version)
+            if not quiet:
+                print(idx, "OK:", name, version)
         else:
             print(idx, "--:", name, version)
 
@@ -37,10 +38,11 @@ def _list():
 
 
 @cli.command()
-def plist():
+@click.option("-q", "--quiet", is_flag=True, default=False)
+def plist(quiet):
     while True:
         print("---")
-        l = list(_plist())
+        l = list(_plist(quiet))
         print("---")
         idx = input("Which? ")
         try:

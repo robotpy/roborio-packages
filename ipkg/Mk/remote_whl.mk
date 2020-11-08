@@ -50,7 +50,7 @@ endif
 
 
 BUILD_DIR ?= wheelhouse
-BUILD_CMD ?= /usr/local/bin/pip3 --disable-pip-version-check install wheel ${PYDEPS} && RPYBUILD_PARALLEL=1 /usr/local/bin/pip3 -v --disable-pip-version-check wheel --no-build-isolation --no-deps --no-binary :all: -b . ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
+BUILD_CMD ?= /usr/local/bin/pip3 --disable-pip-version-check install wheel ${PYDEPS} && RPYBUILD_PARALLEL=1 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig /usr/local/bin/pip3 -v --disable-pip-version-check wheel --no-build-isolation --no-deps --no-binary :all: -b . ${PYPI_PACKAGE_NAME}==${PYPI_PACKAGE_VERSION}
 
 DEPS ?= binutils-symlinks gcc-symlinks g++-symlinks libgcc-s-dev libstdc++-dev make ${PYNAME}-dev ${BUILD_DEPS}
 

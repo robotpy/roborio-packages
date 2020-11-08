@@ -5,12 +5,12 @@ include ../../Mk/pkgdata.mk
 all:
 	$(MAKE) clean
 	$(MAKE) getdata
-	$(MAKE) ipk
+	$(MAKE) ipkwhl
 
 getdata:
 	rm -rf data
-	mkdir -p data/usr/local/lib/python3.8/site-packages
-	tar -xf ${CVZIP} -C data/usr/local/lib/python3.8/site-packages --strip=4 \
-		'*/lib/python3.8/site-packages/cv2.so'
+	mkdir -p data/usr/local/lib/python3.9/site-packages
+	tar -xf ${CVZIP} -C data/usr/local/lib/python3.9/site-packages --strip=4 \
+		'*/lib/python3.9/site-packages/cv2*.so'
 
-include ../../Mk/ipk.mk
+include ${BUILD_ROOT}/Mk/ipkwhl.mk

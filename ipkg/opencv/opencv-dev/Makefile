@@ -5,13 +5,14 @@ include ../../Mk/pkgdata.mk
 all:
 	$(MAKE) clean
 	$(MAKE) getdata
-	$(MAKE) ipk
+	$(MAKE) ipkwhl
 
 getdata:
 	rm -rf data
 	mkdir -p data/usr/local/lib
-	tar -xf ${CVZIP} -C data/usr/local --strip=1 \
+	${BUILD_ROOT}/tools/xtar -xf ${CVZIP} -C data/usr/local --strip=1 \
 		'*/include/*' \
-		'*/lib/cmake/opencv4/*.cmake'
+		'*/lib/cmake/opencv4/*.cmake' \
+		'*/lib/pkgconfig/*'
 
-include ${BUILD_ROOT}/Mk/ipk.mk
+include ${BUILD_ROOT}/Mk/ipkwhl.mk

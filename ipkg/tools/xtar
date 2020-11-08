@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+#
+# Extracts from tarfiles, but resolves symlinks
+#
+
+import argparse
+import copy
+import fnmatch
+import os
+import pathlib
+import tarfile
+import typing
+
+
+class CustomTarfile(tarfile.TarFile):
+    def makelink(self, tarinfo, targetpath):
+        self._extract_member(self._find_link_target(tarinfo), targetpath)
+
+
+def check_member(
+    excludes, includes, member: tarfile.TarInfo
+) -> typing.Optional[tarfile.TarInfo]:
+    if ".." in member.name or member.name.startswith("/"):
+        raise ValueError("Invalid member")
+    for excl in excludes:
+        if fnmatch.fnmatch(member.name, excl):
+            return
+    for incl in includes:
+        if fnmatch.fnmatch(member.name, incl):
+            return member
+
+
+def filter_members(excludes, includes, tfp: CustomTarfile, strip: typing.Optional[int]):
+    for member in tfp.getmembers():
+        member = check_member(excludes, includes, member)
+        if member:
+            if strip:
+                name = pathlib.PurePosixPath(member.name)
+                parts = name.parts[strip:]
+                if not parts:
+                    continue
+                while member.issym():
+                    member = tfp._find_link_target(member)
+                member = copy.deepcopy(member)
+                member.name = '/'.join(parts)
+            yield member
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--directory", "-C", default=".")
+    parser.add_argument("--file", "-f", required=True)
+    parser.add_argument("-x", required=True, action='store_true')
+    parser.add_argument("--exclude", action="append", default=[])
+    parser.add_argument("--strip", default=None, type=int)
+    parser.add_argument("include", nargs="*", default=["*"])
+
+    args = parser.parse_args()
+
+    with CustomTarfile.open(args.file, 'r:*') as tfp:
+
+        tfp.extractall(
+            path=args.directory,
+            members=filter_members(args.exclude, args.include, tfp, args.strip),
+            numeric_owner=True,
+        )

@@ -26,6 +26,9 @@ OPKG_SITE ?= https://www.tortall.net/~robotpy/feeds/${RELEASE}
 OPKG_PUBLIC_KEY ?= robotpy.gpg
 STACK_SIZE ?= 4096
 
+# Used by ipkwhl
+GETDATA_EXTRA_TARARGS ?= 
+
 
 ifndef ROBORIO
 $(error ROBORIO is not set, see vars.template)
@@ -108,7 +111,7 @@ getdata-pkg:
 	mkdir -p data
 	rm -rf data.new
 	mkdir data.new
-	set -o pipefail; cd data.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_TARARGS}' | tar xf -
+	set -o pipefail; cd data.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar ${GETDATA_EXTRA_TARARGS} -cf - ${GETDATA_TARARGS}' | tar xf -
 	rm -rf data.old && mv data data.old && mv data.new data
 	[ ! -d extra ] || cp -r extra/* data/
 
@@ -117,7 +120,7 @@ getdata-dev:
 	mkdir -p devdata
 	rm -rf devdata.new
 	mkdir devdata.new
-	set -o pipefail; cd devdata.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_DEV_TARARGS}' | tar xf -
+	set -o pipefail; cd devdata.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar ${GETDATA_EXTRA_TARARGS} -cf - ${GETDATA_DEV_TARARGS}' | tar xf -
 	rm -rf devdata.old && mv devdata devdata.old && mv devdata.new devdata
 	[ ! -d extradev ] || cp -r extradev/* devdata/
 endif
@@ -127,7 +130,7 @@ getdata-dbg:
 	mkdir -p dbgdata
 	rm -rf dbgdata.new
 	mkdir dbgdata.new
-	set -o pipefail; cd dbgdata.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar -cf - ${GETDATA_DBG_TARARGS}' | tar xf -
+	set -o pipefail; cd dbgdata.new && ssh ${BUILD_USER}@${ROBORIO} 'cd / && tar ${GETDATA_EXTRA_TARARGS} -cf - ${GETDATA_DBG_TARARGS}' | tar xf -
 	rm -rf dbgdata.old && mv dbgdata dbgdata.old && mv dbgdata.new dbgdata
 	[ ! -d extradev ] || cp -r extradev/* dbgdata/
 endif

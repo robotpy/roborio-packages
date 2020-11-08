@@ -1,5 +1,8 @@
 .PHONY: ipk clean package
 
+IPK_DEST ?= ${BUILD_ROOT}/${RELEASE}
+IPK_NAME ?= ${IPK_DEST}/${PACKAGE}_${VERSION}_${ARCH}.ipk
+
 ifdef GETDATA_DEV_TARARGS
 IPK_NAME_DEV = ${IPK_DEST}/${PACKAGE}-dev_${VERSION}_${ARCH}.ipk
 endif

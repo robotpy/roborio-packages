@@ -4,10 +4,11 @@
 /ipkg/**/*.tar.gz
 /ipkg/**/*.tgz
 /ipkg/**/*.tar.bz2
-/ipkg/**/data*
-/ipkg/**/dbgdata
+/ipkg/**/data
+/ipkg/**/data.old
+/ipkg/**/dbgdata*
 /ipkg/**/dbgtmp
-/ipkg/**/devdata
+/ipkg/**/devdata*
 /ipkg/**/devtmp
 /ipkg/vars
 
