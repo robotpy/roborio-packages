@@ -6,7 +6,9 @@ DEPS = binutils-symlinks gcc-symlinks make coreutils \
 	gfortran gfortran-symlinks libgfortran-dev \
 	perl perl-module-file-basename perl-module-file-temp
 
-BUILD_CMD = make TARGET=CORTEXA9 NUM_CORES=2 PREFIX=/usr/local
+PATCHES = arm-buffersize.patch
+
+BUILD_CMD = make MAX_STACK_ALLOC=256 TARGET=CORTEXA9 ARM_SOFTFP_ABI=1 NUM_CORES=2 USE_OPENMP=0 PREFIX=/usr/local
 
 INSTALL_CMD = make PREFIX=/usr/local install
 
@@ -29,7 +31,7 @@ GETDATA_DEV_TARARGS = \
 	usr/local/lib/cmake/openblas
 
 GETDATA_DBG_TARARGS = \
-	usr/local/lib/.debug/libopenblas.so.0.debug
+	usr/local/lib/.debug/libopenblas.so.debug
 
 include ../Mk/remote_build.mk
 include ../Mk/ipkwhl.mk
