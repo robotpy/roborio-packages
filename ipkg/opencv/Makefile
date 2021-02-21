@@ -1,5 +1,5 @@
 
-BINRELEASE = https://github.com/robotpy/roborio-opencv/releases/download/2021.0/OpenCV-4.5.0-cortexa9-vfpv3.tar.gz
+BINRELEASE = https://github.com/robotpy/roborio-opencv/releases/download/2021.1/OpenCV-4.5.1-cortexa9-vfpv3.tar.gz
 CVZIP = $(abspath $(notdir ${BINRELEASE}))
 
 export CVZIP

@@ -96,6 +96,10 @@ def gen_setup_py(data_py_fname: str, setup_py_fname: str, dev: bool, dbg: bool):
         data["name"] = data["name"] + "-dev"
         data["install_requires"].extend(data.get("install_dev_requires", []))
 
+    # hack for implicit dev packages
+    if data["name"].endswith("-dev"):
+        dev = True
+
     # enforce library restrictions
     # -> normal package must have .so that match SONAME
     # -> dev package must not have .so that match SONAME

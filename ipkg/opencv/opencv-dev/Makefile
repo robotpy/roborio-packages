@@ -12,6 +12,7 @@ getdata:
 	mkdir -p data/usr/local/lib
 	${BUILD_ROOT}/tools/xtar -xf ${CVZIP} -C data/usr/local --strip=1 \
 		'*/include/*' \
+		'*/lib/lib*so' \
 		'*/lib/cmake/opencv4/*.cmake' \
 		'*/lib/pkgconfig/*'
 
