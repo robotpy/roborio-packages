@@ -3,21 +3,26 @@ if [ x"$D" = "x" ]; then
 	if [ -x /sbin/ldconfig ]; then /sbin/ldconfig ; fi
 fi
 # compile library files
-/usr/bin/env PYTHONPATH=/usr/local/lib/python3.9 LD_LIBRARY_PATH=/usr/local/lib \
-    /usr/local/bin/python3 -Wi /usr/local/lib/python3.9/compileall.py \
-    -d lib/python3.9 -f -q \
+/usr/bin/env PYTHONPATH=/usr/local/lib/python3.10 LD_LIBRARY_PATH=/usr/local/lib \
+    /usr/local/bin/python3 -Wi /usr/local/lib/python3.10/compileall.py \
+    -d lib/python3.10 -f -q \
     -x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
-    /usr/local/lib/python3.9
-/usr/bin/env PYTHONPATH=/usr/local/lib/python3.9 LD_LIBRARY_PATH=/usr/local/lib \
-    /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.9/compileall.py \
-    -d lib/python3.9 -f -q \
+    /usr/local/lib/python3.10
+/usr/bin/env PYTHONPATH=/usr/local/lib/python3.10 LD_LIBRARY_PATH=/usr/local/lib \
+    /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.10/compileall.py \
+    -d lib/python3.10 -f -q \
     -x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
-    /usr/local/lib/python3.9
-/usr/bin/env PYTHONPATH=/usr/local/lib/python3.9 LD_LIBRARY_PATH=/usr/local/lib \
-    /usr/local/bin/python3 -Wi /usr/local/lib/python3.9/compileall.py \
-    -d lib/python3.9/site-packages -f -q \
-    -x badsyntax /usr/local/lib/python3.9/site-packages
-/usr/bin/env PYTHONPATH=/usr/local/lib/python3.9 LD_LIBRARY_PATH=/usr/local/lib \
-    /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.9/compileall.py \
-    -d lib/python3.9/site-packages -f -q \
-    -x badsyntax /usr/local/lib/python3.9/site-packages
+    /usr/local/lib/python3.10
+/usr/bin/env PYTHONPATH=/usr/local/lib/python3.10 LD_LIBRARY_PATH=/usr/local/lib \
+    /usr/local/bin/python3 -Wi /usr/local/lib/python3.10/compileall.py \
+    -d lib/python3.10/site-packages -f -q \
+    -x badsyntax /usr/local/lib/python3.10/site-packages
+/usr/bin/env PYTHONPATH=/usr/local/lib/python3.10 LD_LIBRARY_PATH=/usr/local/lib \
+    /usr/local/bin/python3 -Wi -O /usr/local/lib/python3.10/compileall.py \
+    -d lib/python3.10/site-packages -f -q \
+    -x badsyntax /usr/local/lib/python3.10/site-packages
+
+# Let user program set RT thread priorities by making CAP_SYS_NICE
+# permitted, inheritable, and effective. See "man 7 capabilities"
+# for docs on capabilities and file capability sets.
+setcap cap_sys_nice+eip /usr/local/bin/python3.10
