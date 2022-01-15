@@ -7,8 +7,8 @@ import shutil
 import click
 
 ROOT = dirname(__file__)
-DEVROOT = join(ROOT, "2021-dev")
-PRODROOT = join(ROOT, "2021")
+DEVROOT = join(ROOT, "2022-dev")
+PRODROOT = join(ROOT, "2022")
 
 
 def _plist(quiet=False):

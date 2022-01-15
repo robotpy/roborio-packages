@@ -7,7 +7,7 @@ ifndef GPG_FINGERPRINT
 $(error GPG_FINGERPRINT is not set, see vars.template)
 endif
 
-YEAR=2021
+YEAR=2022
 DEVYEAR=${YEAR}-dev
 WHLYEAR=${YEAR}-whl
 

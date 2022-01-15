@@ -2,7 +2,7 @@ RobotPy RoboRIO Packages
 ========================
 
 This repository contains the build files used to build the RobotPy .ipk
-packages hosted at https://www.tortall.net/~robotpy/feeds/2020/. The current
+packages hosted at https://www.tortall.net/~robotpy/feeds/2022/. The current
 list of published packages can be found at that URL.
 
 Installing a package (online)
@@ -17,11 +17,11 @@ use the following command to install it:
 Create a `.conf` file in `/etc/opkg` (e.g. `/etc/opkg/robotpy.conf`)
 containing the following line:
 
-    src/gz robotpy https://www.tortall.net/~robotpy/feeds/2020
+    src/gz robotpy https://www.tortall.net/~robotpy/feeds/2022
 
 Here's a command you can copy/paste that does this:
 
-    echo "src/gz robotpy https://www.tortall.net/~robotpy/feeds/2020" > /etc/opkg/robotpy.conf
+    echo "src/gz robotpy https://www.tortall.net/~robotpy/feeds/2022" > /etc/opkg/robotpy.conf
 
 Then run `opkg update`. After you setup the opkg feed, you can run:
 

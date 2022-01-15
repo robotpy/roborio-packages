@@ -6,7 +6,7 @@ ifneq ("$(wildcard $(BUILD_ROOT)/vars)","")
 include ${BUILD_ROOT}/vars
 endif
 
-YEAR = 2021
+YEAR = 2022
 RELEASE = ${YEAR}-dev
 ARCH ?= cortexa9-vfpv3
 
