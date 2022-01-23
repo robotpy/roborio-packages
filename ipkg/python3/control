@@ -1,13 +1,13 @@
 Package: python310
-Version: 3.10.1-r0
+Version: 3.10.2-r0
 Description: Python programming language
 Section: devel
 Priority: optional
 Maintainer: RobotPy Developers <robotpy@googlegroups.com>
 License: BSD
 Architecture: cortexa9-vfpv3
-OE: python38
+OE: python310
 Homepage: http://www.python.org
 Depends: libc6
 Recommends: libreadline6
-Source: https://www.python.org/ftp/python/3.10.1/Python-3.10.1.tgz
+Source: https://www.python.org/ftp/python/3.10.2/Python-3.10.2.tgz
